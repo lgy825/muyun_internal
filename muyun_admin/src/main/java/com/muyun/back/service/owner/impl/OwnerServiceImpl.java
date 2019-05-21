@@ -2,9 +2,7 @@ package com.muyun.back.service.owner.impl;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
-import com.muyun.back.controller.IndexController;
 import com.muyun.back.service.owner.OwnerService;
-import com.muyun.core.base.Result;
 import com.muyun.core.constant.GenericPage;
 import com.muyun.core.dao.hourse.HourseMapperExt;
 import com.muyun.core.dao.owner.OwnerMapper;
@@ -20,8 +18,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.io.UnsupportedEncodingException;
-import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -99,4 +95,36 @@ public class OwnerServiceImpl implements OwnerService {
         }
         return false;
     }
+
+    @Override
+    public Owner getOwnerById(String id) {
+        return ownerMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public Boolean update(Owner owner) {
+        owner.setuDate(new Date());
+        if(StringUtils.isNotEmpty(owner.getuPwd())){
+            try {
+                //给用户的密码进行加密
+                owner.setuPwd(MD5Util.getEncryptedPwd(owner.getuPwd()));
+            } catch (Exception e) {
+                log.error("加密密码失败:"+ owner.getuPwd(), e);
+                throw new DataException("保存用户失败");
+            }
+        }
+        try {
+            ownerMapper.updateByPrimaryKeySelective(owner);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
+    public String getOwnerRealName(String id) {
+        return ownerMapperExt.getOwnerRealNameById(id);
+    }
+
 }

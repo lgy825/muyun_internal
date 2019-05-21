@@ -2,8 +2,9 @@ package com.muyun.core.dao.owner;
 
 import com.muyun.core.model.owner.Owner;
 import com.muyun.core.model.owner.OwnerExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface OwnerMapper {
     /**

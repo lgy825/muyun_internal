@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>用户管理</title>
+    <title>收房管理</title>
     <%@include file="/static/commons/common.jspf" %>
     <link href="${ctx}/static/css/mricode.pagination.css" rel="stylesheet" />
     <script src="${ctx}/static/js/lib/jsrender.min.js"></script>
@@ -12,14 +12,12 @@
     <script id="trTmpl" type="text/x-jrender">
         <thead>
                 <tr>
-                    <th style='width: 15%;'><div>用户名</div></th>
-                    <th style='width: 10%;'><div>姓名</div></th>
-                    <th style='width: 10%;'><div>电话</div></th>
-                    <th style='width: 15%;'><div>邮箱</div></th>
+                    <th style='width: 15%;'><div>房间号</div></th>
+                    <th style='width: 10%;'><div>地区号</div></th>
+                    <th style='width: 10%;'><div>业主</div></th>
+                    <th style='width: 15%;'><div>地址</div></th>
                     <th style='width: 10%;'><div>添加时间</div></th>
-                    <th style='width: 10%;'><div>托管房屋数</div></th>
-                    <th style='width: 10%;'><div>地址</div></th>
-                    <th style='width: 10%;'><div>状态</div></th>
+                    <th style='width: 10%;'><div>房子说明</div></th>
                     <th style='width: 20%;'><div>操作</div></th>
                 </tr>
         </thead>
@@ -27,48 +25,32 @@
         {{for list}}
             <tr>
                 <td>
-                    <div>{{:uName}}</div>
+                    <div>{{:hNumber}}</div>
                 </td>
                 <td>
-                    <div>{{:uRelName}}</div>
+                    <div>{{:hNumberArea}}</div>
                 </td>
                 <td>
-                    <div>{{:uTel}}</div>
+                    <div>{{:uRealName}}</div>
                 </td>
                 <td>
-                    <div>{{:uEmail}}</div>
+                    <div>{{:hAddr}}</div>
                 </td>
                 <td>
-                    <div>{{dateTime:uDate}}</div>
+                    <div>{{dateTime:hDate}}</div>
                 </td>
                 <td>
-                    <div>{{:rCount}}</div>
-                </td>
-                <td>
-                    <div>{{:uAddr}}</div>
-                </td>
-                <td>
-                    <div>
-                        {{if uStatus == '0'}}
-                            使用中
-                        {{else uStatus == '1'}}
-                             暂停使用
-                        {{/if}}
-                    </div>
+                    <div>{{:hDesc}}</div>
                 </td>
                 <td>
                     <div class="">
-                        <a href="${ctx}/owner/tolook?id={{:id}}">
+                        <a href="${ctx}/hourse/tolook?hId={{:hId}}">
                             <input type="button" class="lookbtn gray_btn mr10" value="查看">
                         </a>
-                        <a href="${ctx}/owner/toedit?id={{:id}}">
+                        <a href="${ctx}/hourse/toedit?hId={{:hId}}">
                             <input type="button" class="editbtn gray_btn mr10" value="编辑">
                         </a>
-                        {{if uStatus == 0}}
-                        <input type="button" class="shutbtn gray_btn mr10" data-sid="{{:id}}" value="停用">
-                        {{else}}
-                        <input type="button" class="openbtn gray_btn mr10" data-sid="{{:id}}" value="启用">
-                        {{/if}}
+                        <input type="button" class="shutbtn gray_btn mr10" data-sid="{{:hId}}" value="删除">
                     </div>
                 </td>
             </tr>
@@ -79,13 +61,13 @@
 <body>
 <div class="p20">
     <div class="bgc-ff min620">
-        <div class="b_title">用户管理</div>
+        <div class="b_title">房子管理</div>
         <div class="hr">
             <hr>
         </div>
         <div class="pdtrl20">
-            <a href="${ctx}/owner/toaddOwner">
-                <input type="button" class="blue_btn" value="新建用户">
+            <a href="${ctx}/hourse/toaddHourse">
+                <input type="button" class="blue_btn" value="房子信息录入">
             </a>
             <a href="" class="none">
                 <input type="button" class="gray_btn ml20" value="功能介绍">
@@ -94,8 +76,8 @@
         <div class="select-search pdtrl20">
             <form action="">
                 <div>
-                    <input id="uName" type="text" class="inpW ml20" placeholder="用户名">
-                    <input id="uTel" type="text" class="inpW ml20" placeholder="电话">
+                    <input id="hNumber" type="text" class="inpW ml20" placeholder="房间号">
+                    <input id="hNumberArea" type="text" class="inpW ml20" placeholder="地区号">
                     <input id="searchBtn" type="button" class="blue_btn ml20" value="查询">
                     <input id="resetBtn" type="button" class="blue_btn ml20" value="重置">
                 </div>
@@ -103,7 +85,7 @@
         </div>
         <div class="pdtrl20">
             <div class="scroll-table">
-                <table id="ownerTable" class="seller-lib sell-type vip-type tr-bg" cellpadding="0" cellspacing="0">
+                <table id="hourseTable" class="seller-lib sell-type vip-type tr-bg" cellpadding="0" cellspacing="0">
                 </table>
             </div>
             <div class="page" id="tablPage">
@@ -112,7 +94,7 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="${ctx}/static/js/mod/owner/ownerlist.js"></script>
+<script type="text/javascript" src="${ctx}/static/js/mod/hourse/hourselist.js"></script>
 <%--<script type="text/javascript" src="${ctx}/static/js/lib/ss_helper.js"></script>--%>
 <script>
     $(function () {

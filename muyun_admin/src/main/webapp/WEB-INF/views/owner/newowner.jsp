@@ -15,7 +15,7 @@
             <hr>
         </div>
         <div class="p20">
-            <input id="uid" type="hidden" value="${uId}" />
+            <input id="uId" type="hidden" value="${uId}" />
             <div class="">
                 <div class="mt12">
                     <div class="align-r">姓名</div>

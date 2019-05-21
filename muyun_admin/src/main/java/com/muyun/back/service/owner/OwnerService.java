@@ -1,11 +1,9 @@
 package com.muyun.back.service.owner;
 
-import com.muyun.core.base.Result;
 import com.muyun.core.constant.GenericPage;
 import com.muyun.core.model.owner.Owner;
 import com.muyun.core.model.owner.OwnerExt;
 
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -13,8 +11,14 @@ import java.util.Map;
  */
 public interface OwnerService {
 
-    public GenericPage<OwnerExt> getPageByCondition(Map<String,Object> params);
+    public GenericPage<OwnerExt> getPageByCondition(Map<String, Object> params);
 
     public Boolean insert(Owner owner);
+
+    public Owner getOwnerById(String id);
+
+    Boolean update(Owner owner);
+
+    String getOwnerRealName(String id);
 
 }

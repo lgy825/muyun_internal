@@ -92,7 +92,7 @@
                                     <a href="${ctx}/owner/toOwnerlist" target="homepage">业主列表</a>
                                 </li>
                                 <li class="child-menu">
-                                    <a href="javascript:layer.alert('功能开发中，请耐心等待!');" target="homepage">收房列表</a>
+                                    <a href="${ctx}/hourse/toHourselist" target="homepage">收房列表</a>
                                 </li>
                             </ul>
                     </li>

@@ -106,5 +106,10 @@
     <if test="uTel != null and uTel != ''">
       AND u_tel LIKE '%${uTel}%'
     </if>
+    ORDER BY u_date DESC
+  </select>
+  
+  <select id="getOwnerRealNameById" resultType="String" parameterType="String">
+    SELECT u_rel_name as uRealName from muyun_owner where id=#{id}
   </select>
 </mapper>
