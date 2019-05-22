@@ -18,4 +18,6 @@ public interface HourseService {
     Hourse getHourseByIdById(String hId);
 
     Boolean update(Hourse hourse);
+
+    boolean deleteByPrimaryKey(String hid);
 }

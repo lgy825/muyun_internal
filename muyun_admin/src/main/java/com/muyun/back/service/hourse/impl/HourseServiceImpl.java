@@ -92,4 +92,15 @@ public class HourseServiceImpl implements HourseService {
             return false;
         }
     }
+
+    @Override
+    public boolean deleteByPrimaryKey(String hid) {
+        try {
+            hourseMapper.deleteByPrimaryKey(hid);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 }

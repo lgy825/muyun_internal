@@ -28,14 +28,14 @@ $(function(){
             prevBtnText: '上一页',
             nextBtnText: '下一页',
             remote: {
-                url: ctx + 'hourse/getpage',
+                url: ctx + 'order/getOrderItemPage',
                 params:{
-                    hNumber: $.trim($("#hNumber").val()),
-                    hNumberArea:$.trim($("#hNumberArea").val())
+                    oId: $.trim($("#oId").val()),
+                    dName:$.trim($("#dName").val())
                 },
                 success: function (data) {
                     // data为ajax返回数据
-                    $("#hourseTable").empty().html($("#trTmpl").render(data.resultData));
+                    $("#orderItemTable").empty().html($("#trTmpl").render(data.resultData));
                 },
                 totalName: 'total'
             }
@@ -47,16 +47,16 @@ $(function(){
         $("#hNumberArea").val("");
     });
 
-    $("#hourseTable").on("click", ".deleteHourse", function (){
+    $("#orderItemTable").on("click", ".deleteHourse", function (){
         var sid = $(this).data("sid");
         layer.confirm('删除后将无法恢复，是否继续？', function () {
             $.ajax({
-                url: ctx + "hourse/deleteHourse",
+                url: ctx + "order/deleteOrderItem",
                 type: "GET",
                 cache: false,
                 // async: false,
                 dataType: 'json',
-                data: {hId: sid},
+                data: {dId: sid},
                 success: function (data) {
                     if (data && data.resultCode === '0') {
                         layer.msg('删除成功 !');

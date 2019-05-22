@@ -69,7 +69,7 @@ public class HourseController extends BaseController {
         if(StringUtils.isBlank(hId)) {
             return "hourse/hourselist";
         }
-        model.addAttribute("uId", hId);
+        model.addAttribute("hId", hId);
         return "hourse/lookhourse";
     }
 
@@ -94,5 +94,12 @@ public class HourseController extends BaseController {
     @RequestMapping("/toaddHourse")
     public String toaddHourse() {
         return "hourse/newhourse";
+    }
+
+    @RequestMapping("/deleteHourse")
+    @ResponseBody
+    public Result<Boolean> deleteHourse(String hId) {
+
+        return createSuccessResult(hourseService.deleteByPrimaryKey(hId));
     }
 }

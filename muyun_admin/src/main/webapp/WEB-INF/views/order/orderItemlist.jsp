@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>订单管理</title>
+    <title>订单附加项管理</title>
     <%@include file="/static/commons/common.jspf" %>
     <link href="${ctx}/static/css/mricode.pagination.css" rel="stylesheet" />
     <script src="${ctx}/static/js/lib/jsrender.min.js"></script>
@@ -13,13 +13,10 @@
         <thead>
                 <tr>
                     <th style='width: 15%;'><div>订单号</div></th>
-                    <th style='width: 10%;'><div>房间信息</div></th>
-                    <th style='width: 10%;'><div>创建时间</div></th>
-                    <th style='width: 15%;'><div>订单来源</div></th>
-                    <th style='width: 10%;'><div>实收金额（元）</div></th>
-                    <th style='width: 10%;'><div>利润后金额(元)</div></th>
-                    <th style='width: 10%;'><div>订单状态</div></th>
-                    <th style='width: 10%;'><div>支付方式</div></th>
+                    <th style='width: 10%;'><div>名称</div></th>
+                    <th style='width: 10%;'><div>金额(元)</div></th>
+                    <th style='width: 15%;'><div>描述</div></th>
+                    <th style='width: 10%;'><div>创建时间（元）</div></th>
                     <th style='width: 20%;'><div>操作</div></th>
                 </tr>
         </thead>
@@ -30,48 +27,26 @@
                     <div>{{:oId}}</div>
                 </td>
                 <td>
-                    <div>{{:hNumber}}</div>
+                    <div>{{:dName}}</div>
                 </td>
                 <td>
-                    <div>{{dateTime:oDate}}</div>
+                    <div>{{:dAmount}}</div>
                 </td>
                 <td>
-                    <div>{{:oSource}}</div>
+                    <div>{{:dDesc}}</div>
                 </td>
                 <td>
-                    <div>{{:oRecAmount}}</div>
-                </td>
-                <td>
-                    <div>{{:oActAmount}}</div>
-                </td>
-                <td>
-                    <div>
-                        {{if oStatus == '0'}}
-                            成功
-                        {{else oStatus == '1'}}
-                             失败
-                        {{/if}}
-                    </div>
-                </td>
-                <td>
-                    <div>
-                        {{if oWay == '0'}}
-                            支付宝
-                        {{else oStatus == '1'}}
-                             微信
-                         {{else oStatus == '2'}}
-                             现金
-                        {{/if}}
-                    </div>
+                    <div>{{dateTime:dDate}}</div>
                 </td>
                 <td>
                     <div class="">
-                        <a href="${ctx}/order/tolook?id={{:oId}}">
+                        <a href="${ctx}/order/tolook?id={{:dId}}">
                             <input type="button" class="lookbtn gray_btn mr10" value="查看">
                         </a>
-                        <a href="${ctx}/order/toedit?id={{:oId}}">
+                        <a href="${ctx}/order/toeditItem?id={{:dId}}">
                             <input type="button" class="editbtn gray_btn mr10" value="编辑">
                         </a>
+                        <input type="button" class="deleteHourse gray_btn mr10" data-sid="{{:dId}}" value="删除">
                     </div>
                 </td>
             </tr>
@@ -82,13 +57,13 @@
 <body>
 <div class="p20">
     <div class="bgc-ff min620">
-        <div class="b_title">订单管理</div>
+        <div class="b_title">订单附加项管理</div>
         <div class="hr">
             <hr>
         </div>
         <div class="pdtrl20">
-            <a href="${ctx}/order/toaddOrder">
-                <input type="button" class="blue_btn" value="新建订单">
+            <a href="${ctx}/order/toaddOrderItem">
+                <input type="button" class="blue_btn" value="新建订单附件项">
             </a>
             <a href="" class="none">
                 <input type="button" class="gray_btn ml20" value="功能介绍">
@@ -98,7 +73,7 @@
             <form action="">
                 <div>
                     <input id="oId" type="text" class="inpW ml20" placeholder="订单号">
-                    <input id="uTel" type="text" class="inpW ml20" placeholder="">
+                    <input id="dName" type="text" class="inpW ml20" placeholder="名称">
                     <input id="searchBtn" type="button" class="blue_btn ml20" value="查询">
                     <input id="resetBtn" type="button" class="blue_btn ml20" value="重置">
                 </div>
@@ -106,7 +81,7 @@
         </div>
         <div class="pdtrl20">
             <div class="scroll-table">
-                <table id="orderTable" class="seller-lib sell-type vip-type tr-bg" cellpadding="0" cellspacing="0">
+                <table id="orderItemTable" class="seller-lib sell-type vip-type tr-bg" cellpadding="0" cellspacing="0">
                 </table>
             </div>
             <div class="page" id="tablPage">
@@ -115,7 +90,7 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="${ctx}/static/js/mod/order/orderlist.js"></script>
+<script type="text/javascript" src="${ctx}/static/js/mod/order/orderItemlist.js"></script>
 <%--<script type="text/javascript" src="${ctx}/static/js/lib/ss_helper.js"></script>--%>
 <script>
     $(function () {

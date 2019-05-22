@@ -28,7 +28,7 @@ $(function(){
             prevBtnText: '上一页',
             nextBtnText: '下一页',
             remote: {
-                url: ctx + 'hourse/getpage',
+                url: ctx + 'order/getpage',
                 params:{
                     oId: $.trim($("#oId").val())
                     //hNumberArea:$.trim($("#hNumberArea").val())

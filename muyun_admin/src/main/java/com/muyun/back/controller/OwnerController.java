@@ -11,10 +11,12 @@ import com.muyun.core.util.IdUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -65,11 +67,55 @@ public class OwnerController extends BaseController {
                 return createFailedResult(e1.getMessage(), false);
             }
         } else {
-//            sysUserExt.setUpdateBy(ShiroUtils.getUserId());
-//            return sysUserService.updateUserExt(sysUserExt);
+            return  createSuccessResult(ownerService.update(owner));
         }
         return createSuccessResult(true);
     }
 
+    @RequestMapping("/tolook")
+    public String toLook(String id, Model model) {
+        if(StringUtils.isBlank(id)) {
+            return "owner/ownerlist";
+        }
+        model.addAttribute("uId", id);
+        return "owner/lookowner";
+    }
 
+    @RequestMapping("/get")
+    @ResponseBody
+    public Result<Owner> update(String id) {
+        if(StringUtils.isBlank(id)) {
+            return createFailedResult("查询失败");
+        }
+        return createSuccessResult(ownerService.getOwnerById(id));
+    }
+
+    @RequestMapping("/toedit")
+    public String toEdit(String id, Model model) {
+        if(StringUtils.isBlank(id)) {
+            return "owner/ownerlist";
+        }
+        model.addAttribute("uId", id);
+        return "owner/newowner";
+    }
+
+    @RequestMapping("/disableowner")
+    @ResponseBody
+    public Result<Boolean> disableOwner(String id) {
+        Owner owner=new Owner();
+        owner.setId(id);
+        owner.setuStatus(1);
+        owner.setuDate(new Date());
+        return createSuccessResult(ownerService.update(owner));
+    }
+
+    @RequestMapping("/undisableowner")
+    @ResponseBody
+    public Result<Boolean> undisableowner(String id) {
+        Owner owner=new Owner();
+        owner.setId(id);
+        owner.setuStatus(0);
+        owner.setuDate(new Date());
+        return createSuccessResult(ownerService.update(owner));
+    }
 }

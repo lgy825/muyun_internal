@@ -50,7 +50,7 @@
                         <a href="${ctx}/hourse/toedit?hId={{:hId}}">
                             <input type="button" class="editbtn gray_btn mr10" value="编辑">
                         </a>
-                        <input type="button" class="shutbtn gray_btn mr10" data-sid="{{:hId}}" value="删除">
+                        <input type="button" class="deleteHourse gray_btn mr10" data-sid="{{:hId}}" value="删除">
                     </div>
                 </td>
             </tr>
