@@ -119,7 +119,7 @@
                         </a>
                         <ul class="child-list color-white none">
                             <li class="child-menu">
-                                <a href="javascript:layer.alert('功能开发中，请耐心等待!');" target="homepage">主户列表</a>
+                                <a href="${ctx}/order/toOrderlist;" target="homepage">订单列表</a>
                             </li>
                             <li class="child-menu">
                                 <a href="javascript:layer.alert('功能开发中，请耐心等待!');" target="homepage">收房列表</a>
