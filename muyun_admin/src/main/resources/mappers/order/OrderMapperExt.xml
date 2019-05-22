@@ -103,8 +103,12 @@
     <if test="oId != null and oId != ''">
       AND oId LIKE '%${oId}%'
     </if>
-    <if test="hNumberArea != null and hNumberArea != ''">
-      AND h_number_area LIKE '%${hNumberArea}%'
+    <if test="beginTime!=null">
+      AND  o_date >= #{beginTime}
+    </if>
+    --          查询的结束时间
+    <if test="endTime!=null">
+      AND o_date <![CDATA[<=]]> #{endTime}
     </if>
     ORDER BY h_date DESC
   </select>
