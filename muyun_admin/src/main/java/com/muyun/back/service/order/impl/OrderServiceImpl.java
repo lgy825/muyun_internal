@@ -37,6 +37,9 @@ public class OrderServiceImpl implements OrderSercvice{
     @Autowired
     private OrderItemMapper orderItemMapper;
 
+    @Autowired
+    private OrderMapper orderMapper;
+
     @Override
     public GenericPage<OrderExt> getPageByCondition(Map<String, Object> params) {
         int pageIndex = 1, pageSize = 10;
@@ -109,10 +112,40 @@ public class OrderServiceImpl implements OrderSercvice{
     }
 
     @Override
+    public boolean saveOrder(com.muyun.core.model.order.Order order) {
+
+        if(order!=null) {
+            order.setoDate(new Date());
+            order.setoStatus(0);
+            try {
+                orderMapper.insertSelective(order);
+                return true;
+            } catch (Exception e) {
+                e.printStackTrace();
+                return false;
+            }
+        }
+        return false;
+    }
+
+
+    @Override
     public boolean update(OrderItem orderItem) {
         try {
             orderItem.setdDate(new Date());
             orderItemMapper.updateByPrimaryKeySelective(orderItem);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
+    public boolean updateOrder(com.muyun.core.model.order.Order order) {
+        try {
+            order.setoDate(new Date());
+            orderMapper.updateByPrimaryKeySelective(order);
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -129,6 +162,35 @@ public class OrderServiceImpl implements OrderSercvice{
             e.printStackTrace();
             return false;
         }
+    }
+
+    @Override
+    public boolean deleteOrder(String oId) {
+        try {
+            orderItemMapper.deleteByPrimaryKey(oId);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
+    public OrderExt getOrderInfoById(String oId) {
+        OrderExt orderExt=orderMapperExt.getOrderInfoById(oId);
+        if(orderExt.getoWay()==0){
+            orderExt.setPayWay("微信");
+        }else if(orderExt.getoWay()==1){
+            orderExt.setPayWay("支付包");
+        }else{
+            orderExt.setPayWay("线下支付");
+        }
+        List<OrderItem> itemList=orderItemMapperExt.getOrderItemByOId(oId);
+        orderExt.sethNumber(orderMapperExt.getHourseNumberById(orderExt.gethId()));
+        if(itemList!=null){
+            orderExt.setOrderItems(itemList);
+        }
+        return orderExt;
     }
 }
 

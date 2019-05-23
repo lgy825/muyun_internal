@@ -10,4 +10,6 @@ import java.util.Map;
 public interface OrderItemMapperExt {
 
     List<OrderItem> getOrderItemPage(Map<String, Object> params);
+
+    List<OrderItem> getOrderItemByOId(String oId);
 }

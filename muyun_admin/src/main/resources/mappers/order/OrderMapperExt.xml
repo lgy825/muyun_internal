@@ -116,4 +116,11 @@
       SELECT h_number from muyun_hourse where h_id=#{hId}
     </select>
 
+  <select id="getOrderInfoById" resultMap="BaseResultMap" parameterType="String">
+    SELECT
+    <include refid="Base_Column_List" />
+    from muyun_order
+    where o_id=#{oId}
+  </select>
+
 </mapper>

@@ -13,4 +13,6 @@ public interface OrderMapperExt {
     List<OrderExt> getOrderPage(Map<String, Object> params);
 
     String getHourseNumberById(String hId);
+
+    OrderExt getOrderInfoById(String oId);
 }
