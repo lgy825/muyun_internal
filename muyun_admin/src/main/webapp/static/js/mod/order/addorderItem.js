@@ -21,9 +21,9 @@ $(function () {
         if(dAmount==null){
             layer.msg("输入不能为空");
         }
-        var tr=/^[0-9]+([.][0-9]{1}){0,1}$/;
-        if(!tr.test(dAmount) || dAmount>10){
-            layer.msg('请检查折扣，值小于10，小数点后保留一位 !');
+        var tr= /(^[1-9]([0-9]+)?(\.[0-9]{1,2})?$)|(^(0){1}$)|(^[0-9]\.[0-9]([0-9])?$)/;
+        if(!tr.test(dAmount)){
+            layer.msg('金额输入有误，请重新输入!');
             return;
         }
         var dDesc=$.trim($("#dDesc").val());
