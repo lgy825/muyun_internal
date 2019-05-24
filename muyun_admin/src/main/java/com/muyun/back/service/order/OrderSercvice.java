@@ -15,7 +15,15 @@ public interface OrderSercvice {
 
     boolean saveOrderItem(OrderItem orderItem);
 
+    boolean saveOrder(Order order);
+
     boolean update(OrderItem orderItem);
 
+    boolean updateOrder(Order order);
+
     boolean delete(String dId);
+
+    boolean deleteOrder(String oId);
+
+    OrderExt getOrderInfoById(String oId);
 }

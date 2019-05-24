@@ -4,6 +4,7 @@ import com.muyun.back.service.order.OrderSercvice;
 import com.muyun.core.base.BaseController;
 import com.muyun.core.base.Result;
 import com.muyun.core.constant.PageResult;
+import com.muyun.core.model.order.Order;
 import com.muyun.core.model.order.OrderExt;
 
 import com.muyun.core.model.order.OrderItem;
@@ -90,6 +91,11 @@ public class OrderController extends BaseController{
         return "order/addOrderItem";
     }
 
+    @RequestMapping("/toaddOrder")
+    public String toaddOrder(String id) {
+        return "order/addOrder";
+    }
+
     @RequestMapping("/saveOrderItem")
     @ResponseBody
     public Result<Boolean> save(OrderItem orderItem) {
@@ -106,6 +112,22 @@ public class OrderController extends BaseController{
         return createSuccessResult(true);
     }
 
+    //addOrder
+    @RequestMapping("/addOrder")
+    @ResponseBody
+    public Result<Boolean> addOrder(Order order) {
+        if(StringUtils.isBlank(order.getoId())) {
+            order.setoId(IdUtils.orderCodeGeneration());
+            try {
+                orderSercvice.saveOrder(order);
+            } catch (Exception e1) {
+                return createFailedResult(e1.getMessage(), false);
+            }
+        } else {
+            return  createSuccessResult(orderSercvice.updateOrder(order));
+        }
+        return createSuccessResult(true);
+    }
     //deleteOrderItem
     @RequestMapping("/deleteOrderItem")
     @ResponseBody
@@ -113,5 +135,27 @@ public class OrderController extends BaseController{
 
         return createSuccessResult(orderSercvice.delete(dId));
     }
+
+    //删除订单
+    @RequestMapping("/deleteOrder")
+    @ResponseBody
+    public Result<Boolean> deleteOrder(String oId) {
+
+        return createSuccessResult(orderSercvice.deleteOrder(oId));
+    }
+
+    //查看订单详情
+    @RequestMapping("/tolook")
+    public String toLook(String id, Model model) {
+        if(StringUtils.isBlank(id)) {
+            return "order/orderlist";
+        }
+        //1.根据订单id查询所属订单
+        OrderExt orderExt=orderSercvice.getOrderInfoById(id);
+        model.addAttribute("orderExt", orderExt);
+        return "order/orderDetail";
+    }
+
+
 }
 

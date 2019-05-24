@@ -185,10 +185,17 @@
 			<artifactId>kaptcha</artifactId>
 			<version>2.3.2</version>
 		</dependency>
+
+		<!--<dependency>-->
+			<!--<groupId>org.springframework.boot</groupId>-->
+			<!--<artifactId>spring-boot-devtools</artifactId>-->
+			<!--<optional>true</optional>-->
+		<!--</dependency>-->
 	</dependencies>
 
 	<build>
 		<plugins>
+
 			<!-- 配置java版本 不配置的话默认父类配置的是1.6-->
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -254,5 +261,7 @@
 			<!--</plugin>-->
 		</plugins>
 	</build>
+
+
 
 </project>

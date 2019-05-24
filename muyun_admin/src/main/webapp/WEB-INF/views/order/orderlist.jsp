@@ -12,10 +12,10 @@
     <script id="trTmpl" type="text/x-jrender">
         <thead>
                 <tr>
-                    <th style='width: 15%;'><div>订单号</div></th>
+                    <th style='width: 10%;'><div>订单号</div></th>
                     <th style='width: 10%;'><div>房间信息</div></th>
                     <th style='width: 10%;'><div>创建时间</div></th>
-                    <th style='width: 15%;'><div>订单来源</div></th>
+                    <th style='width: 10%;'><div>订单来源</div></th>
                     <th style='width: 10%;'><div>实收金额（元）</div></th>
                     <th style='width: 10%;'><div>利润后金额(元)</div></th>
                     <th style='width: 10%;'><div>订单状态</div></th>
@@ -39,7 +39,14 @@
                     <div>{{:oSource}}</div>
                 </td>
                 <td>
-                    <div>{{:oRecAmount}}</div>
+                    <div>
+                    {{if oRecAmount == null || oRecAmount == ''}}
+                            --
+                    {{else oStatus == '1'}}
+                           {{:oRecAmount}}
+                    {{/if}}
+
+                    </div>
                 </td>
                 <td>
                     <div>{{:oActAmount}}</div>
@@ -67,11 +74,12 @@
                 <td>
                     <div class="">
                         <a href="${ctx}/order/tolook?id={{:oId}}">
-                            <input type="button" class="lookbtn gray_btn mr10" value="查看">
+                            <input type="button" class="lookbtn gray_btn mr10" value="订单详情">
                         </a>
                         <a href="${ctx}/order/toedit?id={{:oId}}">
                             <input type="button" class="editbtn gray_btn mr10" value="编辑">
                         </a>
+                        <input type="button" class="deleteOrder gray_btn mr10" data-sid="{{:oId}}" value="删除">
                     </div>
                 </td>
             </tr>
