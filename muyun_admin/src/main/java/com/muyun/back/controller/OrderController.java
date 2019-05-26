@@ -4,10 +4,8 @@ import com.muyun.back.service.order.OrderSercvice;
 import com.muyun.core.base.BaseController;
 import com.muyun.core.base.Result;
 import com.muyun.core.constant.PageResult;
-import com.muyun.core.model.order.Order;
-import com.muyun.core.model.order.OrderExt;
+import com.muyun.core.model.order.*;
 
-import com.muyun.core.model.order.OrderItem;
 import com.muyun.core.util.IdUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -77,12 +76,21 @@ public class OrderController extends BaseController{
     }
 
     @RequestMapping("/toeditItem")
-    public String toEdit(String id, Model model) {
+    public String toeditItem(String id, Model model) {
         if(StringUtils.isBlank(id)) {
             return "order/orderItemlist";
         }
         model.addAttribute("dId", id);
         return "order/addOrderItem";
+    }
+
+    @RequestMapping("/toedit")
+    public String toEdit(String id, Model model) {
+        if(StringUtils.isBlank(id)) {
+            return "order/orderlist";
+        }
+        model.addAttribute("oId", id);
+        return "order/addOrder";
     }
 
     @RequestMapping("/toaddOrderItem")
@@ -154,6 +162,24 @@ public class OrderController extends BaseController{
         OrderExt orderExt=orderSercvice.getOrderInfoById(id);
         model.addAttribute("orderExt", orderExt);
         return "order/orderDetail";
+    }
+
+    @RequestMapping("/getPayWayAll")
+    @ResponseBody
+    public Result<List<PayWay>> getPayWayAll(){
+        return createSuccessResult(orderSercvice.getPayWay());
+    }
+
+    @RequestMapping("/getOrdeSourceAll")
+    @ResponseBody
+    public Result<List<OrderSource>> getOrdeSourceAll(){
+        return createSuccessResult(orderSercvice.getOrderSource());
+    }
+
+    @RequestMapping("/get")
+    @ResponseBody
+    public Result<Order> get(String oId){
+        return createSuccessResult(orderSercvice.get(oId));
     }
 
 

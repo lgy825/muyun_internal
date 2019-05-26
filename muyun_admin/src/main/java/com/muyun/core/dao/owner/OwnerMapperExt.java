@@ -1,5 +1,6 @@
 package com.muyun.core.dao.owner;
 
+import com.muyun.core.model.owner.Owner;
 import com.muyun.core.model.owner.OwnerExt;
 
 import java.util.List;
@@ -10,4 +11,8 @@ public interface OwnerMapperExt {
     List<OwnerExt> getOwnerPage(Map<String, Object> params);
 
     String getOwnerRealNameById(String id);
+
+    Owner getOwnerByCondition(Owner owner);
+
+
 }

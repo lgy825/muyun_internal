@@ -1,6 +1,8 @@
 $(function () {
 
     loadOHourse();
+    loadOrderSource();
+    loadPayWay();
     $("#saveBtn").click(function () {
 
         if($("#paySel").val() == -1) {
@@ -23,8 +25,8 @@ $(function () {
         if(oRecAmount==null){
             layer.msg("输入不能为空");
         }
-        var tr=/^[0-9]+([.][0-9]{1}){0,1}$/;
-        if(!tr.test(oRecAmount) || oRecAmount>10){
+        var tr= /(^[1-9]([0-9]+)?(\.[0-9]{1,2})?$)|(^(0){1}$)|(^[0-9]\.[0-9]([0-9])?$)/;
+        if(!tr.test(oRecAmount)){
             layer.msg('金额输入有误请重新输入 !');
             return;
         }
@@ -80,6 +82,96 @@ $(function () {
                     $(data.resultData.list).each(function (idx, hourse) {
                         $("#hourseSel").append("<option value='" + hourse.hId + "'>" + hourse.hNumber + "</option>");
                     });
+
+                } else {
+                    if (data.resultDesc) {
+                        layer.msg(data.resultDesc);
+                    } else {
+                        layer.msg('查询失败 !');
+                    }
+                }
+            },
+            error: function () {
+                layer.msg('查询失败 !');
+            }
+        });
+    }
+
+    function loadPayWay() {
+        $.ajax({
+            url: ctx + "order/getPayWayAll",
+            type: "GET",
+            cache: false,
+            async: false,
+            dataType: 'json',
+            success: function (data) {
+                if (data && data.resultCode === '0') {
+                    //
+                    $("#paySel").select2({placeholder: '*选择支付方式*'});
+                    $("#paySel").append("<option value='-1'>*选择支付方式*</option>");
+                    $(data.resultData).each(function (idx, item) {
+                        $("#paySel").append("<option value='" + item.pId + "'>" + item.pName + "</option>");
+                    });
+                } else {
+                    if (data.resultDesc) {
+                        layer.msg(data.resultDesc);
+                    } else {
+                        layer.msg('查询失败 !');
+                    }
+                }
+            },
+            error: function () {
+                layer.msg('查询失败 !');
+            }
+        });
+    }
+
+    function loadOrderSource() {
+        $.ajax({
+            url: ctx + "order/getOrdeSourceAll",
+            type: "GET",
+            cache: false,
+            async: false,
+            dataType: 'json',
+            success: function (data) {
+                if (data && data.resultCode === '0') {
+                    //
+                    $("#sourceSel").select2({placeholder: '*选择订单来源*'});
+                    $("#sourceSel").append("<option value='-1'>*选择订单来源*</option>");
+                    $(data.resultData).each(function (idx, item) {
+                        $("#sourceSel").append("<option value='" + item.sId + "'>" + item.sName + "</option>");
+                    });
+                    // 加载数据 -------------
+                    if ($("#oId").val()) {
+                        $.ajax({
+                            url: ctx + "order/get",
+                            type: "GET",
+                            cache: false,
+                            async: false,
+                            dataType: 'json',
+                            data: {
+                                oId: $("#oId").val(),
+                            },
+                            success: function (data) {
+                                if (data && data.resultCode === '0') {
+                                    su = data.resultData;
+                                    $("#paySel").val(su.oWay);
+                                    $("#sourceSel").val(su.oSource);
+                                    $("#hourseSel").val(su.hId);
+                                    $("#oRecAmount").val(su.oRecAmount);
+                                } else {
+                                    if (data.resultDesc) {
+                                        layer.msg(data.resultDesc);
+                                    } else {
+                                        layer.msg('查询失败 !');
+                                    }
+                                }
+                            },
+                            error: function () {
+                                layer.msg('查询失败 !');
+                            }
+                        });
+                    }
                 } else {
                     if (data.resultDesc) {
                         layer.msg(data.resultDesc);

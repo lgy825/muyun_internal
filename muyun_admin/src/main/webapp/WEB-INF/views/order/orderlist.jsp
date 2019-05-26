@@ -36,20 +36,25 @@
                     <div>{{dateTime:oDate}}</div>
                 </td>
                 <td>
-                    <div>{{:oSource}}</div>
+                    <div>{{:sourceWay}}</div>
                 </td>
                 <td>
                     <div>
-                    {{if oRecAmount == null || oRecAmount == ''}}
+                    {{if oRecAmount == null || oRecAmount=='' }}
                             --
-                    {{else oStatus == '1'}}
+                    {{else}}
                            {{:oRecAmount}}
                     {{/if}}
-
                     </div>
                 </td>
                 <td>
-                    <div>{{:oActAmount}}</div>
+                    <div>
+                    {{if oActAmount == null || oActAmount ==''}}
+                            --
+                    {{else}}
+                           {{:oActAmount}}
+                    {{/if}}
+                    </div>
                 </td>
                 <td>
                     <div>
@@ -62,13 +67,7 @@
                 </td>
                 <td>
                     <div>
-                        {{if oWay == '0'}}
-                            支付宝
-                        {{else oStatus == '1'}}
-                             微信
-                         {{else oStatus == '2'}}
-                             现金
-                        {{/if}}
+                        {{:payWay}}
                     </div>
                 </td>
                 <td>
