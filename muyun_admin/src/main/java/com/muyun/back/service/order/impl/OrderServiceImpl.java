@@ -167,7 +167,7 @@ public class OrderServiceImpl implements OrderSercvice{
     @Override
     public boolean deleteOrder(String oId) {
         try {
-            orderItemMapper.deleteByPrimaryKey(oId);
+            orderMapper.deleteByPrimaryKey(oId);
             return true;
         } catch (Exception e) {
             e.printStackTrace();

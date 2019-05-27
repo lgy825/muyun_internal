@@ -13,14 +13,14 @@
         <thead>
                 <tr>
                     <th style='width: 10%;'><div>订单号</div></th>
-                    <th style='width: 10%;'><div>房间信息</div></th>
+                    <th style='width: 9%;'><div>房间信息</div></th>
                     <th style='width: 10%;'><div>创建时间</div></th>
-                    <th style='width: 10%;'><div>订单来源</div></th>
-                    <th style='width: 10%;'><div>实收金额（元）</div></th>
-                    <th style='width: 10%;'><div>利润后金额(元)</div></th>
-                    <th style='width: 10%;'><div>订单状态</div></th>
-                    <th style='width: 10%;'><div>支付方式</div></th>
-                    <th style='width: 20%;'><div>操作</div></th>
+                    <th style='width: 9%;'><div>订单来源</div></th>
+                    <th style='width: 10%;'><div>实收金额(元)</div></th>
+                    <th style='width: 11%;'><div>利润后金额(元)</div></th>
+                    <th style='width: 9%;'><div>订单状态</div></th>
+                    <th style='width: 9%;'><div>支付方式</div></th>
+                    <th style='width: 23%;'><div>操作</div></th>
                 </tr>
         </thead>
         <tbody>
@@ -36,20 +36,33 @@
                     <div>{{dateTime:oDate}}</div>
                 </td>
                 <td>
-                    <div>{{:oSource}}</div>
+                    <div>
+                        {{if oSource == '0'}}
+                            携程
+                        {{else oSource == '1'}}
+                             美团
+                         {{else oSource == '2'}}
+                             其它
+                        {{/if}}
+                    </div>
                 </td>
                 <td>
                     <div>
                     {{if oRecAmount == null || oRecAmount == ''}}
                             --
-                    {{else oStatus == '1'}}
+                    {{else}}
                            {{:oRecAmount}}
                     {{/if}}
-
                     </div>
                 </td>
                 <td>
-                    <div>{{:oActAmount}}</div>
+                    <div>
+                    {{if oActAmount == null || oActAmount == ''}}
+                            --
+                    {{else}}
+                           {{:oActAmount}}
+                    {{/if}}
+                    </div>
                 </td>
                 <td>
                     <div>
@@ -66,8 +79,10 @@
                             支付宝
                         {{else oStatus == '1'}}
                              微信
-                         {{else oStatus == '2'}}
+                        {{else oStatus == '2'}}
                              现金
+                         {{else}}
+                            其它
                         {{/if}}
                     </div>
                 </td>

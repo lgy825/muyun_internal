@@ -12,15 +12,15 @@
     <script id="trTmpl" type="text/x-jrender">
         <thead>
                 <tr>
-                    <th style='width: 15%;'><div>用户名</div></th>
-                    <th style='width: 10%;'><div>姓名</div></th>
-                    <th style='width: 10%;'><div>电话</div></th>
-                    <th style='width: 15%;'><div>邮箱</div></th>
+                    <th style='width: 8%;'><div>用户名</div></th>
+                    <th style='width: 8%;'><div>姓名</div></th>
+                    <th style='width: 8%;'><div>电话</div></th>
+                    <th style='width: 8%;'><div>邮箱</div></th>
                     <th style='width: 10%;'><div>添加时间</div></th>
                     <th style='width: 10%;'><div>托管房屋数</div></th>
-                    <th style='width: 10%;'><div>地址</div></th>
-                    <th style='width: 10%;'><div>状态</div></th>
-                    <th style='width: 20%;'><div>操作</div></th>
+                    <th style='width: 18%;'><div>地址</div></th>
+                    <th style='width: 8%;'><div>状态</div></th>
+                    <th style='width: 22%;'><div>操作</div></th>
                 </tr>
         </thead>
         <tbody>
