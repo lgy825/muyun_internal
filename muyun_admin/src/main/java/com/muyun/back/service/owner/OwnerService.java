@@ -21,7 +21,7 @@ public interface OwnerService {
 
     String getOwnerRealName(String id);
 
-    Owner getOwnerByCondition(Owner owner);
+    OwnerExt getOwnerByCondition(Owner owner);
 
     
 

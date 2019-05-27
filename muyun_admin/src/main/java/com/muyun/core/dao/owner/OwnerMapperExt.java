@@ -12,7 +12,7 @@ public interface OwnerMapperExt {
 
     String getOwnerRealNameById(String id);
 
-    Owner getOwnerByCondition(Owner owner);
+    OwnerExt getOwnerByCondition(Owner owner);
 
 
 }

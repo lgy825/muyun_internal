@@ -18,6 +18,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -117,8 +119,7 @@ public class OwnerServiceImpl implements OwnerService {
             ownerMapper.updateByPrimaryKeySelective(owner);
             return true;
         } catch (Exception e) {
-            e.printStackTrace();
-            return false;
+            throw new DataException("保存用户失败");
         }
     }
 
@@ -128,8 +129,16 @@ public class OwnerServiceImpl implements OwnerService {
     }
 
     @Override
-    public Owner getOwnerByCondition(Owner owner) {
-        Owner owner1=ownerMapperExt.getOwnerByCondition(owner);
+    public OwnerExt getOwnerByCondition(Owner owner) {
+        String pwd=owner.getuPwd();
+        try {
+            owner.setuPwd(MD5Util.getEncryptedPwd(pwd));
+        } catch (NoSuchAlgorithmException e) {
+            throw new DataException("500","出现异常，请再尝试一次");
+        } catch (UnsupportedEncodingException e) {
+            throw new DataException("500","出现异常，请再尝试一次");
+        }
+        OwnerExt owner1=ownerMapperExt.getOwnerByCondition(owner);
         if(owner1==null){
             throw new DataException("500","手机号或密码输入错误，请重新输入");
         }
