@@ -109,4 +109,8 @@
     <include refid="Base_Column_List" />
     from muyun_order_item where o_id=#{oId}
   </select>
+
+  <select id="getTotalForItem" parameterType="String" resultType="Double">
+    SELECT IFNULL(sum(d_amount),0) from muyun_order_item where o_id=#{oId}
+  </select>
 </mapper>

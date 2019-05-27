@@ -13,14 +13,15 @@
         <thead>
                 <tr>
                     <th style='width: 10%;'><div>订单号</div></th>
-                    <th style='width: 9%;'><div>房间信息</div></th>
-                    <th style='width: 10%;'><div>创建时间</div></th>
+                    <th style='width: 8%;'><div>房间信息</div></th>
+                    <th style='width: 8%;'><div>开始时间</div></th>
+                    <th style='width: 8%;'><div>结束时间</div></th>
                     <th style='width: 9%;'><div>订单来源</div></th>
                     <th style='width: 10%;'><div>实收金额(元)</div></th>
-                    <th style='width: 11%;'><div>利润后金额(元)</div></th>
-                    <th style='width: 9%;'><div>订单状态</div></th>
-                    <th style='width: 9%;'><div>支付方式</div></th>
-                    <th style='width: 23%;'><div>操作</div></th>
+                    <th style='width: 8%;'><div>成本(元)</div></th>
+                    <th style='width: 8%;'><div>订单状态</div></th>
+                    <th style='width: 8%;'><div>支付方式</div></th>
+                    <th style='width: 22%;'><div>操作</div></th>
                 </tr>
         </thead>
         <tbody>
@@ -33,7 +34,14 @@
                     <div>{{:hNumber}}</div>
                 </td>
                 <td>
-                    <div>{{dateTime:oDate}}</div>
+                    <div>
+                           {{dateTime:oStartDate}}
+                    </div>
+                </td>
+                <td>
+                    <div>
+                           {{dateTime:oEndDate}}
+                    </div>
                 </td>
                 <td>
                     <div>{{:sourceWay}}</div>
@@ -41,7 +49,7 @@
                 <td>
                     <div>
                     {{if oRecAmount == null || oRecAmount=='' }}
-                            --
+                            0
                     {{else}}
                            {{:oRecAmount}}
                     {{/if}}
@@ -50,7 +58,7 @@
                 <td>
                     <div>
                     {{if oActAmount == null || oActAmount ==''}}
-                            --
+                            0
                     {{else}}
                            {{:oActAmount}}
                     {{/if}}

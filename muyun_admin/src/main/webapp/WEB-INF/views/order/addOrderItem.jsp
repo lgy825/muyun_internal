@@ -31,8 +31,8 @@
                 </div>
                 <div class="mt12">
                     <div class="align-r">金额</div>
-                    <input id="dAmount" maxlength="15" type="text" class="inpW set-inpwid ml8" placeholder="请输入金额">
-                    <span class="color-lred ml8 none">* 不超过15个字母或数字，不能出现其他特殊字符</span>
+                    <input id="dAmount" maxlength="5" type="text" class="inpW set-inpwid ml8" placeholder="请输入金额">
+                    <span class="color-lred ml8 none">* 不超过5个字母或数字，不能出现其他特殊字符</span>
                 </div>
                 <div class="mt12 clearfix">
                     <div class="align-r fl relative">

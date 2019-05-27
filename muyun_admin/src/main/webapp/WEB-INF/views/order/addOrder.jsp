@@ -2,9 +2,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="renderer" content="webkit">
     <title>添加订单</title>
     <%@include file="/static/commons/common.jspf" %>
+    <link rel="stylesheet" href="${ctx}/static/css/jquery.datetimepicker.css">
+
 </head>
 <body>
 <div class="p20">
@@ -16,7 +20,7 @@
         </div>
         <div class="p20">
             <input id="oId" type="hidden" value="${oId}" />
-            <div class="">
+            <div class="bgc-ff full-white">
                 <!-- 必填选项 -->
                 <div class="mt12 clearfix">
                     <div class="align-r mr8 mt6">支付方式</div>
@@ -40,6 +44,15 @@
                     </select>
                     <span class="color-lred ml8 mt6">*请选择所属房间*</span>
                 </div>
+                <div class="mt12 searchBox">
+                    <div class="b_label lab_wid1 relative">订单日期<i class="whats"></i><p class="modify-what">设置订单的开始时间和结束时间</p></div>
+                    <input type="text" class="inpW inpWid2 timer" id="timeSpick" placeholder=""/>
+                    <input type="hidden" id="startTime" value=""/>
+                    <span class="zhi">至</span>
+                    <input type="text" class="inpW inpWid2 timer mr8" id="timeEpick" placeholder=""/>
+                    <input type="hidden" id="endTime" value="" />
+                    <span class="color-lred none">* 结束日期不能早于开始日期 </span>
+                </div>
                 <div class="mt12">
                     <div class="align-r">房费</div>
                     <input id="oRecAmount" maxlength="5" type="text" class="inpW set-inpwid ml8" placeholder="请输入房费">
@@ -58,5 +71,6 @@
 </body>
 
 <!-- scripts -->
+<script type="text/javascript" src="${ctx}/static/js/lib/jquery.datetimepicker.js"></script>
 <script type="text/javascript" src="${ctx}/static/js/mod/order/addorder.js"></script>
 </html>

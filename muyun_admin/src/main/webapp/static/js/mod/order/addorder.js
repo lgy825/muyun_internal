@@ -10,6 +10,7 @@ $(function () {
             return;
         }
         var oWay = $("#paySel").val();
+
         if($("#sourceSel").val() == -1) {
             layer.msg("请选择订单来源");
             return;
@@ -21,6 +22,17 @@ $(function () {
             return;
         }
         var hourseSel = $("#hourseSel").val();
+        var startTime = timeSpick.val();
+        var endTime = timeEpick.val();
+        if (startTime.length < 1 || endTime.length < 1) {
+            layer.msg("请选择起止时间");
+            return;
+        } else {
+            if (Date.parse(startTime) > Date.parse(endTime)) {
+                layer.msg("结束日期不能早于开始日期");
+                return;
+            }
+        }
         var oRecAmount = $.trim($("#oRecAmount").val());
         if(oRecAmount==null){
             layer.msg("输入不能为空");
@@ -40,6 +52,8 @@ $(function () {
                 oWay: oWay,
                 oSource: oSource,
                 hId: hourseSel,
+                oStartDate:startTime+ " 00:00:00",
+                oEndDate:endTime+ " 23:59:59",
                 oRecAmount:oRecAmount
             },
             success: function (data) {
@@ -185,6 +199,31 @@ $(function () {
             }
         });
     }
+
+
+    //出事化日其插件
+    var timeSpick = $("#timeSpick").datetimepicker({
+        format: 'Y-m-d',
+        minDate: 0,
+        onChangeDateTime: function (curDate) {
+            var curDateTime = curDate.sformat("yyyy-MM-dd");
+            $("#timeEpick").datetimepicker({
+                minDate: curDateTime ? curDateTime : false
+            });
+        },
+        timepicker: false
+    });
+    var timeEpick = $("#timeEpick").datetimepicker({
+        format: 'Y-m-d',
+        minDate: 0,
+        onChangeDateTime: function (curDate) {
+            var curDateTime = curDate.sformat("yyyy-MM-dd");
+            $("#timeSpick").datetimepicker({
+                maxDate: curDateTime ? curDateTime : false
+            });
+        },
+        timepicker: false
+    });
     
 
 });
