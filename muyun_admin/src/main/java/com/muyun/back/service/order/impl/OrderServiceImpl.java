@@ -4,18 +4,14 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.muyun.back.service.order.OrderSercvice;
 import com.muyun.core.constant.GenericPage;
-import com.muyun.core.dao.order.OrderItemMapper;
-import com.muyun.core.dao.order.OrderItemMapperExt;
-import com.muyun.core.dao.order.OrderMapper;
-import com.muyun.core.dao.order.OrderMapperExt;
-import com.muyun.core.model.order.OrderExt;
-import com.muyun.core.model.order.OrderItem;
+import com.muyun.core.dao.order.*;
+import com.muyun.core.model.order.*;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -40,6 +36,13 @@ public class OrderServiceImpl implements OrderSercvice{
     @Autowired
     private OrderMapper orderMapper;
 
+    @Autowired
+    private OrderSourceMapper orderSourceMapper;
+
+    @Autowired
+    private PayWayMapper payWayMapper;
+
+
     @Override
     public GenericPage<OrderExt> getPageByCondition(Map<String, Object> params) {
         int pageIndex = 1, pageSize = 10;
@@ -61,10 +64,19 @@ public class OrderServiceImpl implements OrderSercvice{
                 }
             }
         }
+        Map<Integer,String> payWays=getAllPayWayMap();
+        Map<String,String> orderSources=getAllOrderSourceMap();
         Page<OrderExt> pageInfo = PageHelper.startPage(pageIndex, pageSize, true);
         List<OrderExt> orderExts=orderMapperExt.getOrderPage(params);
         for(OrderExt orderExt:orderExts){
             orderExt.sethNumber(orderMapperExt.getHourseNumberById(orderExt.gethId()));
+            if(payWays.containsKey(orderExt.getoWay())){
+                orderExt.setPayWay(payWays.get(orderExt.getoWay()));
+            }
+            if(orderSources.containsKey(orderExt.getoSource())){
+                orderExt.setSourceWay(orderSources.get(orderExt.getoSource()));
+            }
+
         }
         return new GenericPage<>(pageIndex, pageSize, orderExts, pageInfo.getTotal());
 
@@ -178,12 +190,13 @@ public class OrderServiceImpl implements OrderSercvice{
     @Override
     public OrderExt getOrderInfoById(String oId) {
         OrderExt orderExt=orderMapperExt.getOrderInfoById(oId);
-        if(orderExt.getoWay()==0){
-            orderExt.setPayWay("微信");
-        }else if(orderExt.getoWay()==1){
-            orderExt.setPayWay("支付包");
-        }else{
-            orderExt.setPayWay("线下支付");
+        Map<Integer,String> payWays=getAllPayWayMap();
+        Map<String,String> orderSources=getAllOrderSourceMap();
+        if(payWays.containsKey(orderExt.getoWay())){
+            orderExt.setPayWay(payWays.get(orderExt.getoWay()));
+        }
+        if(orderSources.containsKey(orderExt.getoSource())){
+            orderExt.setSourceWay(orderSources.get(orderExt.getoSource()));
         }
         List<OrderItem> itemList=orderItemMapperExt.getOrderItemByOId(oId);
         orderExt.sethNumber(orderMapperExt.getHourseNumberById(orderExt.gethId()));
@@ -192,5 +205,43 @@ public class OrderServiceImpl implements OrderSercvice{
         }
         return orderExt;
     }
+
+    @Override
+    public List<OrderSource> getOrderSource() {
+        List<OrderSource> orderSources=orderSourceMapper.getOrderSourceAll();
+        return orderSources;
+    }
+
+    @Override
+    public List<PayWay> getPayWay() {
+        List<PayWay> payWays=payWayMapper.getPayWayAll();
+        return payWays;
+    }
+
+    @Override
+    public Order get(String oId) {
+
+        return orderMapper.selectByPrimaryKey(oId);
+    }
+
+    public Map<Integer,String> getAllPayWayMap(){
+        List<PayWay> payWays=payWayMapper.getPayWayAll();
+        Map<Integer,String> stringMap=new HashMap<>();
+        for(PayWay payWay:payWays){
+            stringMap.put(payWay.getpId(),payWay.getpName());
+        }
+        return stringMap;
+    }
+
+    public Map<String,String> getAllOrderSourceMap(){
+        List<OrderSource> orderSources=orderSourceMapper.getOrderSourceAll();
+        Map<String,String> stringMap=new HashMap<>();
+        for(OrderSource orderSource:orderSources){
+            stringMap.put(orderSource.getsId(),orderSource.getsName());
+        }
+        return stringMap;
+    }
+
+
 }
 

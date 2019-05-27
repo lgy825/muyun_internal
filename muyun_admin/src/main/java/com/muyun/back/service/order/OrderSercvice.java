@@ -1,10 +1,9 @@
 package com.muyun.back.service.order;
 
 import com.muyun.core.constant.GenericPage;
-import com.muyun.core.model.order.Order;
-import com.muyun.core.model.order.OrderExt;
-import com.muyun.core.model.order.OrderItem;
+import com.muyun.core.model.order.*;
 
+import java.util.List;
 import java.util.Map;
 
 public interface OrderSercvice {
@@ -26,4 +25,10 @@ public interface OrderSercvice {
     boolean deleteOrder(String oId);
 
     OrderExt getOrderInfoById(String oId);
+
+    List<OrderSource> getOrderSource();
+
+    List<PayWay> getPayWay();
+
+    Order get(String oId);
 }

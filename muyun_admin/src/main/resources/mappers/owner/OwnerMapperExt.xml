@@ -112,4 +112,11 @@
   <select id="getOwnerRealNameById" resultType="String" parameterType="String">
     SELECT u_rel_name as uRealName from muyun_owner where id=#{id}
   </select>
+  
+  <select id="getOwnerByCondition" resultMap="BaseResultMap" parameterType="com.muyun.core.model.owner.Owner">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM muyun_owner
+    WHERE u_tel=#{uTel} AND u_pwd=#{uPwd}
+  </select>
 </mapper>

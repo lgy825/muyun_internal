@@ -80,6 +80,16 @@ public class OrderExt implements Serializable {
     private String payWay;
     private String sourceWay;
 
+    private Double incomeAll;
+
+    public Double getIncomeAll() {
+        return incomeAll;
+    }
+
+    public void setIncomeAll(Double incomeAll) {
+        this.incomeAll = incomeAll;
+    }
+
     public String getPayWay() {
         return payWay;
     }

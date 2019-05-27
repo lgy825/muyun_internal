@@ -47,7 +47,7 @@ $(function(){
         $("#hNumberArea").val("");
     });
 
-    $("#orderTable").on("click", ".deleteHourse", function (){
+    $("#orderItemTable").on("click", ".deleteHourse", function (){
         var sid = $(this).data("sid");
         layer.confirm('删除后将无法恢复，是否继续？', function () {
             $.ajax({

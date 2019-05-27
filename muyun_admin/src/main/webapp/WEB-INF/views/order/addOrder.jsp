@@ -21,10 +21,7 @@
                 <div class="mt12 clearfix">
                     <div class="align-r mr8 mt6">支付方式</div>
                     <select id="paySel" class="select ml16 wid-238">
-                        <option value='-1'>*请选择支付方式*</option>
-                        <option value='0'>微信</option>
-                        <option value='1'>支付宝</option>
-                        <option value='2'>线下</option>
+
                     </select>
                     <span class="color-lred ml8 mt6">* 支付方式*</span>
                 </div>
@@ -32,15 +29,7 @@
                 <div class="mt12 clearfix">
                     <div class="align-r mr8 mt6">订单来源</div>
                     <select id="sourceSel" class="select ml16 wid-238">
-                        <option value='-1'>*请选择订单来源*</option>
-                        <option value='0'>美团</option>
-                        <option value='1'>携程</option>
-                        <option value='2'>飞猪</option>
-                        <option value='3'>途牛</option>
-                        <option value='4'>同城</option>
-                        <option value='5'>大众点评</option>
-                        <option value='6'>去哪儿</option>
-                        <option value='7'>考拉酒店APP</option>
+
                     </select>
                     <span class="color-lred ml8 mt6">*请选择订单来源*</span>
                 </div>

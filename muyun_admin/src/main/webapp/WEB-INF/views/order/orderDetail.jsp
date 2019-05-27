@@ -38,7 +38,7 @@
             <div>
                 <div>
                     <span class="color-graya8">订单来源</span>
-                    <p class="mt10">${orderExt.oSource}</p>
+                    <p class="mt10">${orderExt.sourceWay}</p>
                 </div>
             </div>
             <div class="w17">

@@ -28,6 +28,7 @@ public class HourseController extends BaseController {
 
     @Autowired
     private HourseService hourseService;
+
     @RequestMapping("/toHourselist")
     public String toHourselist() {
         return "hourse/hourselist";

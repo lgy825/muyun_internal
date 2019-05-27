@@ -127,4 +127,15 @@ public class OwnerServiceImpl implements OwnerService {
         return ownerMapperExt.getOwnerRealNameById(id);
     }
 
+    @Override
+    public Owner getOwnerByCondition(Owner owner) {
+        Owner owner1=ownerMapperExt.getOwnerByCondition(owner);
+        if(owner1==null){
+            throw new DataException("500","手机号或密码输入错误，请重新输入");
+        }
+        return owner1;
+    }
+
+
+
 }

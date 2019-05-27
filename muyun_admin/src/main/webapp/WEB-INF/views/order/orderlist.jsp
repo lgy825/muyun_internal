@@ -36,19 +36,11 @@
                     <div>{{dateTime:oDate}}</div>
                 </td>
                 <td>
-                    <div>
-                        {{if oSource == '0'}}
-                            携程
-                        {{else oSource == '1'}}
-                             美团
-                         {{else oSource == '2'}}
-                             其它
-                        {{/if}}
-                    </div>
+                    <div>{{:sourceWay}}</div>
                 </td>
                 <td>
                     <div>
-                    {{if oRecAmount == null || oRecAmount == ''}}
+                    {{if oRecAmount == null || oRecAmount=='' }}
                             --
                     {{else}}
                            {{:oRecAmount}}
@@ -57,7 +49,7 @@
                 </td>
                 <td>
                     <div>
-                    {{if oActAmount == null || oActAmount == ''}}
+                    {{if oActAmount == null || oActAmount ==''}}
                             --
                     {{else}}
                            {{:oActAmount}}
@@ -75,15 +67,7 @@
                 </td>
                 <td>
                     <div>
-                        {{if oWay == '0'}}
-                            支付宝
-                        {{else oStatus == '1'}}
-                             微信
-                        {{else oStatus == '2'}}
-                             现金
-                         {{else}}
-                            其它
-                        {{/if}}
+                        {{:payWay}}
                     </div>
                 </td>
                 <td>

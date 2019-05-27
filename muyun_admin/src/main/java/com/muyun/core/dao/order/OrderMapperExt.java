@@ -15,4 +15,12 @@ public interface OrderMapperExt {
     String getHourseNumberById(String hId);
 
     OrderExt getOrderInfoById(String oId);
+
+    double getAmountByCondition(Map<String,String> params);
+
+    int getCountByCondition(Map<String,String> params);
+
+    double getExtraAmountByCondition(Map<String,String> params);
+
+    List<OrderExt> getOrderPageBycondition(Map<String,String> params);
 }
