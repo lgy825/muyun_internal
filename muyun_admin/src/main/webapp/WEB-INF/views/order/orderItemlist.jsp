@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>订单附加项管理</title>
+    <title>开支列表</title>
     <%@include file="/static/commons/common.jspf" %>
     <link href="${ctx}/static/css/mricode.pagination.css" rel="stylesheet" />
     <script src="${ctx}/static/js/lib/jsrender.min.js"></script>
@@ -57,13 +57,13 @@
 <body>
 <div class="p20">
     <div class="bgc-ff min620">
-        <div class="b_title">订单附加项管理</div>
+        <div class="b_title">开支管理</div>
         <div class="hr">
             <hr>
         </div>
         <div class="pdtrl20">
             <a href="${ctx}/order/toaddOrderItem">
-                <input type="button" class="blue_btn" value="新建订单附件项">
+                <input type="button" class="blue_btn" value="新建开支">
             </a>
             <a href="" class="none">
                 <input type="button" class="gray_btn ml20" value="功能介绍">

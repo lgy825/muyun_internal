@@ -99,11 +99,12 @@ public class OwnerServiceImpl implements OwnerService {
     @Override
     public Boolean update(Owner owner) {
         owner.setuDate(new Date());
+        owner.setuPwd(MD5Util.convertMD5(owner.getuPwd()));
         try {
             ownerMapper.updateByPrimaryKeySelective(owner);
             return true;
         } catch (Exception e) {
-            throw new DataException("保存用户失败");
+            throw new DataException("用户名或密码修改失败");
         }
     }
 
@@ -115,13 +116,15 @@ public class OwnerServiceImpl implements OwnerService {
     @Override
     public OwnerExt getOwnerByCondition(Owner owner) {
         String pwd=owner.getuPwd();
-        try {
-            owner.setuPwd(MD5Util.getEncryptedPwd(pwd));
-        } catch (NoSuchAlgorithmException e) {
-            throw new DataException("500","出现异常，请再尝试一次");
-        } catch (UnsupportedEncodingException e) {
-            throw new DataException("500","出现异常，请再尝试一次");
-        }
+//        try {
+//            owner.setuPwd(MD5Util.getEncryptedPwd(pwd));
+//        } catch (NoSuchAlgorithmException e) {
+//            throw new DataException("500","出现异常，请再尝试一次");
+//        } catch (UnsupportedEncodingException e) {
+//            throw new DataException("500","出现异常，请再尝试一次");
+//        }
+        //对输入参数的密码进行解密
+        owner.setuPwd(MD5Util.convertMD5(owner.getuPwd()));
         OwnerExt owner1=ownerMapperExt.getOwnerByCondition(owner);
         if(owner1==null){
             throw new DataException("500","手机号或密码输入错误，请重新输入");

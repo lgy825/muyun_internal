@@ -10,7 +10,8 @@
 	<groupId>com.muyun</groupId>
 	<artifactId>muyun_admin</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<!--<packaging>jar</packaging>-->
+	<packaging>war</packaging>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.encoding>UTF-8</maven.compiler.encoding>
@@ -159,11 +160,11 @@
 			<!--<version>2.5</version>-->
 			<!--<scope>provided</scope>-->
 		<!--</dependency>-->
-		<dependency>
-			<groupId>javax.servlet.jsp</groupId>
-			<artifactId>jsp-api</artifactId>
-			<scope>provided</scope>
-		</dependency>
+		<!--<dependency>-->
+			<!--<groupId>javax.servlet.jsp</groupId>-->
+			<!--<artifactId>jsp-api</artifactId>-->
+			<!--<scope>provided</scope>-->
+		<!--</dependency>-->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
@@ -191,6 +192,23 @@
 			<!--<artifactId>spring-boot-devtools</artifactId>-->
 			<!--<optional>true</optional>-->
 		<!--</dependency>-->
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-tomcat</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+			<scope>provided</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -260,6 +278,7 @@
 				<!--</dependencies>-->
 			<!--</plugin>-->
 		</plugins>
+		<finalName>yunmu</finalName>
 	</build>
 
 

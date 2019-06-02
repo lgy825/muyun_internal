@@ -104,10 +104,10 @@
                         </a>
                         <ul class="child-list color-white none">
                             <li class="child-menu">
-                                <a href="javascript:layer.alert('功能开发中，请耐心等待!');" target="homepage">主户列表</a>
+                                <a href="javascript:layer.alert('功能开发中，请耐心等待!');" target="homepage">项目列表</a>
                             </li>
                             <li class="child-menu">
-                                <a href="javascript:layer.alert('功能开发中，请耐心等待!');" target="homepage">收房列表</a>
+                                <a href="javascript:layer.alert('功能开发中，请耐心等待!');" target="homepage">管理项目</a>
                             </li>
                         </ul>
                     </li>
@@ -134,10 +134,10 @@
                         </a>
                         <ul class="child-list color-white none">
                             <li class="child-menu">
-                                <a href="javascript:layer.alert('功能开发中，请耐心等待!');" target="homepage">主户列表</a>
+                                <a href="javascript:layer.alert('功能开发中，请耐心等待!');" target="homepage">员工列表</a>
                             </li>
                             <li class="child-menu">
-                                <a href="javascript:layer.alert('功能开发中，请耐心等待!');" target="homepage">收房列表</a>
+                                <a href="javascript:layer.alert('功能开发中，请耐心等待!');" target="homepage">员工管理</a>
                             </li>
                         </ul>
                     </li>
