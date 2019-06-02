@@ -1,5 +1,29 @@
 $(function () {
 
+    //出事化日其插件
+    var timeSpick = $("#timeSpick").datetimepicker({
+        format: 'Y-m-d',
+        minDate: 0,
+        onChangeDateTime: function (curDate) {
+            var curDateTime = curDate.sformat("yyyy-MM-dd");
+            $("#timeEpick").datetimepicker({
+                minDate: curDateTime ? curDateTime : false
+            });
+        },
+        timepicker: false
+    });
+    var timeEpick = $("#timeEpick").datetimepicker({
+        format: 'Y-m-d',
+        minDate: 0,
+        onChangeDateTime: function (curDate) {
+            var curDateTime = curDate.sformat("yyyy-MM-dd");
+            $("#timeSpick").datetimepicker({
+                maxDate: curDateTime ? curDateTime : false
+            });
+        },
+        timepicker: false
+    });
+
     loadOHourse();
     loadOrderSource();
     loadPayWay();
@@ -126,6 +150,40 @@ $(function () {
                     $(data.resultData).each(function (idx, item) {
                         $("#paySel").append("<option value='" + item.pId + "'>" + item.pName + "</option>");
                     });
+                    // 加载数据 -------------
+                    if ($("#oId").val()) {
+                        $.ajax({
+                            url: ctx + "order/get",
+                            type: "GET",
+                            cache: false,
+                            async: false,
+                            dataType: 'json',
+                            data: {
+                                oId: $("#oId").val(),
+                            },
+                            success: function (data) {
+                                if (data && data.resultCode === '0') {
+                                    su = data.resultData;
+                                    //alert(su.oWay);
+                                    $("#sourceSel").val(su.oSource);
+                                    $("#paySel").val(su.oWay);
+                                    $("#hourseSel").val(su.hId);
+                                    $("#oRecAmount").val(su.oRecAmount);
+                                    timeSpick.val(su.oStartDate.split(" ")[0]);
+                                    timeEpick.val(su.oEndDate.split(" ")[0]);
+                                } else {
+                                    if (data.resultDesc) {
+                                        layer.msg(data.resultDesc);
+                                    } else {
+                                        layer.msg('查询失败 !');
+                                    }
+                                }
+                            },
+                            error: function () {
+                                layer.msg('查询失败 !');
+                            }
+                        });
+                    }
                 } else {
                     if (data.resultDesc) {
                         layer.msg(data.resultDesc);
@@ -155,37 +213,7 @@ $(function () {
                     $(data.resultData).each(function (idx, item) {
                         $("#sourceSel").append("<option value='" + item.sId + "'>" + item.sName + "</option>");
                     });
-                    // 加载数据 -------------
-                    if ($("#oId").val()) {
-                        $.ajax({
-                            url: ctx + "order/get",
-                            type: "GET",
-                            cache: false,
-                            async: false,
-                            dataType: 'json',
-                            data: {
-                                oId: $("#oId").val(),
-                            },
-                            success: function (data) {
-                                if (data && data.resultCode === '0') {
-                                    su = data.resultData;
-                                    $("#paySel").val(su.oWay);
-                                    $("#sourceSel").val(su.oSource);
-                                    $("#hourseSel").val(su.hId);
-                                    $("#oRecAmount").val(su.oRecAmount);
-                                } else {
-                                    if (data.resultDesc) {
-                                        layer.msg(data.resultDesc);
-                                    } else {
-                                        layer.msg('查询失败 !');
-                                    }
-                                }
-                            },
-                            error: function () {
-                                layer.msg('查询失败 !');
-                            }
-                        });
-                    }
+
                 } else {
                     if (data.resultDesc) {
                         layer.msg(data.resultDesc);
@@ -201,29 +229,7 @@ $(function () {
     }
 
 
-    //出事化日其插件
-    var timeSpick = $("#timeSpick").datetimepicker({
-        format: 'Y-m-d',
-        minDate: 0,
-        onChangeDateTime: function (curDate) {
-            var curDateTime = curDate.sformat("yyyy-MM-dd");
-            $("#timeEpick").datetimepicker({
-                minDate: curDateTime ? curDateTime : false
-            });
-        },
-        timepicker: false
-    });
-    var timeEpick = $("#timeEpick").datetimepicker({
-        format: 'Y-m-d',
-        minDate: 0,
-        onChangeDateTime: function (curDate) {
-            var curDateTime = curDate.sformat("yyyy-MM-dd");
-            $("#timeSpick").datetimepicker({
-                maxDate: curDateTime ? curDateTime : false
-            });
-        },
-        timepicker: false
-    });
+
     
 
 });

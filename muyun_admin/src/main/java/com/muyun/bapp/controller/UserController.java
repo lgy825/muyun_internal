@@ -37,14 +37,15 @@ public class UserController extends BaseController {
     @RequestMapping("/login")
     @ResponseBody
     public Result login(@RequestBody AppRequestParam appRequestParam) {
-        if (appRequestParam.getOwnerPhone() == null) {
-            return createFailedResult("手机号输入为空，请重新输入");
+        if (appRequestParam.getOwnerPhone() == null && appRequestParam.getOwnerName()==null) {
+            return createFailedResult("请输入手机号或用户名");
         }
         if (appRequestParam.getOwnerPwd() == null) {
             return createFailedResult("密码输入为空，请重新输入");
         }
         Owner owner = new Owner();
         owner.setuPwd(appRequestParam.getOwnerPwd());
+        owner.setuName(appRequestParam.getOwnerName());
         owner.setuTel(appRequestParam.getOwnerPhone());
         try {
             return createSuccessResult(ownerService.getOwnerByCondition(owner));

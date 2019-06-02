@@ -128,10 +128,10 @@
     from muyun_order o where o.h_id in(
     SELECT h.h_id from muyun_hourse h where 0=0
     <if test="beginTime!=null">
-      AND  o_date >= #{beginTime}
+      AND  o_start_date >= #{beginTime}
     </if>
     <if test="endTime!=null">
-      AND o_date <![CDATA[<=]]> #{endTime}
+      AND o_end_date <![CDATA[<=]]> #{endTime}
     </if>
     <if test="userId != null and userId != ''">
       AND h.u_id = #{userId}
@@ -143,10 +143,10 @@
     SELECT count(*)  from muyun_order o where o.h_id in(
     SELECT h.h_id from muyun_hourse h where 0=0
     <if test="beginTime!=null">
-      AND  o_date >= #{beginTime}
+      AND  o_start_date >= #{beginTime}
     </if>
     <if test="endTime!=null">
-      AND o_date <![CDATA[<=]]> #{endTime}
+      AND o_end_date <![CDATA[<=]]> #{endTime}
     </if>
     <if test="userId != null and userId != ''">
       AND h.u_id = #{userId}
@@ -160,15 +160,14 @@
     (SELECT o.o_id from muyun_order o where o.h_id in(
     SELECT h.h_id from muyun_hourse h where 0=0
       <if test="beginTime!=null">
-        AND  o_date >= #{beginTime}
+        AND  o_start_date >= #{beginTime}
       </if>
       <if test="endTime!=null">
-        AND o_date <![CDATA[<=]]> #{endTime}
+        AND o_end_date <![CDATA[<=]]> #{endTime}
       </if>
       <if test="userId != null and userId != ''">
         AND h.u_id = #{userId}
       </if>
-
     ))
   </select>
 
@@ -177,12 +176,14 @@
     from muyun_order mo
     where mo.h_id in
     (SELECT h.h_id from muyun_hourse h where 0=0
-     h.u_id= '2333'
+      <if test="userId != null and userId != ''">
+        AND h.u_id = #{userId}
+      </if>
       <if test="beginTime!=null">
-        AND  o_date >= #{beginTime}
+        AND  o_start_date >= #{beginTime}
       </if>
       <if test="endTime!=null">
-        AND o_date <![CDATA[<=]]> #{endTime}
+        AND o_end_date <![CDATA[<=]]> #{endTime}
       </if>
       <if test="userId != null and userId != ''">
         AND h.u_id = #{userId}

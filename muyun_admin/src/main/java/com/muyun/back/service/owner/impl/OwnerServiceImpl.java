@@ -76,13 +76,6 @@ public class OwnerServiceImpl implements OwnerService {
     public Boolean insert(Owner owner) {
 
         if(owner!=null){
-            try {
-                //给用户的密码进行加密
-                owner.setuPwd(MD5Util.getEncryptedPwd(owner.getuPwd()));
-            } catch (Exception e) {
-                log.error("加密密码失败:"+ owner.getuPwd(), e);
-                throw new DataException("保存用户失败");
-            }
             owner.setToken(0);
             owner.setuStatus(1);
             owner.setuDate(new Date());
@@ -106,15 +99,6 @@ public class OwnerServiceImpl implements OwnerService {
     @Override
     public Boolean update(Owner owner) {
         owner.setuDate(new Date());
-        if(StringUtils.isNotEmpty(owner.getuPwd())){
-            try {
-                //给用户的密码进行加密
-                owner.setuPwd(MD5Util.getEncryptedPwd(owner.getuPwd()));
-            } catch (Exception e) {
-                log.error("加密密码失败:"+ owner.getuPwd(), e);
-                throw new DataException("保存用户失败");
-            }
-        }
         try {
             ownerMapper.updateByPrimaryKeySelective(owner);
             return true;

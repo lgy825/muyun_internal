@@ -63,13 +63,6 @@ public class AppServiceImpl implements AppService {
     @Override
     public OrderExt getOrderInfoById(String oId) {
         OrderExt orderExt=orderMapperExt.getOrderInfoById(oId);
-        if(orderExt.getoWay()==0){
-            orderExt.setPayWay("微信");
-        }else if(orderExt.getoWay()==1){
-            orderExt.setPayWay("支付包");
-        }else{
-            orderExt.setPayWay("线下支付");
-        }
         List<OrderItem> itemList=orderItemMapperExt.getOrderItemByOId(oId);
         orderExt.sethNumber(orderMapperExt.getHourseNumberById(orderExt.gethId()));
         if(itemList!=null){

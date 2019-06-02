@@ -30,13 +30,13 @@ $(function () {
             if (!hAddr) {
                 layer.msg("请输入房子所在地址");
                 return;
-            } else if (!ValidUtils.validUserName(hAddr, 1, 25)) {
-                layer.msg("密码不超过25个字母或数字，不能出现其他特殊字符");
+            } else if (!ValidUtils.validText(hAddr, 1, 25)) {
+                layer.msg("地址不能超过25个字符，不能出现其他特殊字符");
                 return;
             }
         } else {
-            if (hAddr.length > 0 && !ValidUtils.validUserName(hAddr, 1, 25)) {
-                layer.msg("密码不超过25个字母或数字，不能出现其他特殊字符");
+            if (hAddr.length > 0 && !ValidUtils.validText(hAddr, 1, 25)) {
+                layer.msg("地址不能超过25个字符，不能出现其他特殊字符");
                 return;
             }
         }

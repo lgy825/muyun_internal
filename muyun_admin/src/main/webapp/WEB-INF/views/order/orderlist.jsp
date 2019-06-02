@@ -113,7 +113,7 @@
             <form action="">
                 <div>
                     <input id="oId" type="text" class="inpW ml20" placeholder="订单号">
-                    <input id="uTel" type="text" class="inpW ml20" placeholder="">
+                    <%--<input id="hId" type="text" class="inpW ml20" placeholder="房间号">--%>
                     <input id="searchBtn" type="button" class="blue_btn ml20" value="查询">
                     <input id="resetBtn" type="button" class="blue_btn ml20" value="重置">
                 </div>
