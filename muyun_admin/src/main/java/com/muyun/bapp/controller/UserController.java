@@ -48,6 +48,7 @@ public class UserController extends BaseController {
         owner.setuName(appRequestParam.getOwnerName());
         owner.setuTel(appRequestParam.getOwnerPhone());
         try {
+
             return createSuccessResult(ownerService.getOwnerByCondition(owner));
         } catch (Exception e) {
             return createFailedResult(e.getMessage());

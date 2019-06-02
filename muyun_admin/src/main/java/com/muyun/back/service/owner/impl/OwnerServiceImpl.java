@@ -79,7 +79,6 @@ public class OwnerServiceImpl implements OwnerService {
             owner.setToken(0);
             owner.setuStatus(1);
             owner.setuDate(new Date());
-
             try {
                 ownerMapper.insert(owner);
                 return true;
@@ -128,6 +127,9 @@ public class OwnerServiceImpl implements OwnerService {
         OwnerExt owner1=ownerMapperExt.getOwnerByCondition(owner);
         if(owner1==null){
             throw new DataException("500","手机号或密码输入错误，请重新输入");
+        }
+        if(owner1.getuStatus()==1){
+            throw new DataException("500","该用户还未启用，请与管理原联系");
         }
         return owner1;
     }
