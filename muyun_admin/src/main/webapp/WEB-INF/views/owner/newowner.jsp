@@ -29,22 +29,22 @@
                 </div>
                 <div class="mt12">
                     <div class="align-r">登录密码</div>
-                    <input id="uPwd" maxlength="10" type="text" class="inpW set-inpwid ml8" placeholder="请输入登录密码">
+                    <input id="uPwd" maxlength="15" type="text" class="inpW set-inpwid ml8" placeholder="请输入登录密码">
                     <span class="color-lred ml8 none">* 不超过10个字母或数字，不能出现特殊字符</span>
                 </div>
                 <div class="mt12">
                     <div class="align-r">邮箱</div>
-                    <input id="uEmail" type="text" class="inpW set-inpwid ml8" placeholder="请输入邮箱">
+                    <input id="uEmail" maxlength="15" type="text" class="inpW set-inpwid ml8" placeholder="请输入邮箱">
                     <span class="color-lred ml8 none">请输入正确的邮箱格式，可为空</span>
                 </div>
                 <div class="mt12">
                     <div class="align-r">电话</div>
-                    <input id="uTel" maxlength="20" type="text" class="inpW set-inpwid ml8" placeholder="请输入联系电话">
+                    <input id="uTel" maxlength="11" type="text" class="inpW set-inpwid ml8" placeholder="请输入联系电话">
                     <span class="color-lred ml8 none">请输入用户联系电话，可以为固话也可以为手机号，可为空</span>
                 </div>
                 <div class="mt12">
                     <div class="align-r">地址</div>
-                    <input id="uAddr" maxlength="20" type="text" class="inpW set-inpwid ml8" placeholder="请输入用户地址">
+                    <input id="uAddr" maxlength="50" type="text" class="inpW set-inpwid ml8" placeholder="请输入用户地址">
                     <span class="color-lred ml8 none">请输入用户的地址，可为空</span>
                 </div>
                 <div class="mt12 clearfix">

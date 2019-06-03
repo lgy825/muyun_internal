@@ -4,10 +4,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 /**
- * ClassName:SpringBootStartApplication
- *
- * @author ligy-008494
- * @create 2019-05-27 17:03
+ * Created by 13544 on 2019/6/2.
  */
 public class SpringBootStartApplication extends SpringBootServletInitializer {
 
@@ -16,5 +13,5 @@ public class SpringBootStartApplication extends SpringBootServletInitializer {
         // 注意这里要指向原先用main方法执行的Application启动类
         return builder.sources(MuyunAdminApplication.class);
     }
-}
 
+}

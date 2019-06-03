@@ -31,6 +31,7 @@ $(function(){
                 url: ctx + 'order/getpage',
                 params:{
                     oId: $.trim($("#oId").val())
+                    //hId:$.trim($("#hId").val())
                     //hNumberArea:$.trim($("#hNumberArea").val())
                 },
                 success: function (data) {

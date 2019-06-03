@@ -12,4 +12,6 @@ public interface OrderItemMapperExt {
     List<OrderItem> getOrderItemPage(Map<String, Object> params);
 
     List<OrderItem> getOrderItemByOId(String oId);
+
+    double getTotalForItem(String oId);
 }

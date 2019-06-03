@@ -53,27 +53,28 @@ $(function () {
             return;
         }
         var uPwd = $.trim($("#uPwd").val());
-        if(!$("#uPwd").val()) {
+        if(!$("#uId").val()) {
             if (!uPwd) {
+
                 layer.msg("请输入密码");
                 return;
-            } else if (!ValidUtils.validUserName(uPwd, 1, 10)) {
+            } else if (!ValidUtils.validUserName(uPwd, 1, 15)) {
                 layer.msg("密码不超过10个字母或数字，不能出现其他特殊字符");
                 return;
             }
         } else {
-            if (uPwd.length > 0 && !ValidUtils.validUserName(uPwd, 1, 10)) {
+            if (uPwd.length > 0 && !ValidUtils.validUserName(uPwd, 1, 15)) {
                 layer.msg("密码不超过10个字母或数字，不能出现其他特殊字符");
                 return;
             }
         }
         var uEmail = $.trim($("#uEmail").val());
-        if(uEmail && !ValidUtils.validEmail(uEmail, 1, 10)) {
+        if(uEmail && !ValidUtils.validEmail(uEmail, 1, 15)) {
             layer.msg("请输入正确的邮箱格式，可为空");
             return;
         }
         var uTel = $.trim($("#uTel").val());
-        if(uTel && !ValidUtils.validNum(uTel, 15)) {
+        if(uTel && !ValidUtils.validNum(uTel, 11)) {
             layer.msg("联系电话过长");
             return;
         }

@@ -112,7 +112,16 @@ public class OrderServiceImpl implements OrderSercvice{
     public boolean saveOrderItem(OrderItem orderItem) {
         if(orderItem!=null) {
             orderItem.setdDate(new Date());
+            //获取现在订单中的成本
+            String oId=orderItem.getoId();
+            //更新订单中的成本金额
+            double extraSum=orderItemMapperExt.getTotalForItem(oId);
+            double orderTotal=extraSum+orderItem.getdAmount();
+            Order order=new Order();
+            order.setoId(oId);
+            order.setoActAmount(orderTotal);
             try {
+                orderMapper.updateByPrimaryKeySelective(order);
                 orderItemMapper.insertSelective(orderItem);
                 return true;
             } catch (Exception e) {

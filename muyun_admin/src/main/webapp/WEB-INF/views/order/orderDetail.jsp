@@ -50,7 +50,7 @@
             <div>
                 <div>
                     <span class="color-graya8">开支</span>
-                    <p class="mt10 color-blue">${orderExt.oActAmount}</p>
+                    <p class="mt10 color-blue">${orderExt.oActAmount==''||orderExt.oActAmount==null ? "0" :orderExt.oActAmount}</p>
                 </div>
             </div>
             <div>

@@ -117,6 +117,15 @@
     SELECT
     <include refid="Base_Column_List" />
     FROM muyun_owner
-    WHERE u_tel=#{uTel}
+    WHERE 0=0
+    <if test="uName != null and uName != ''">
+      AND u_name = #{uName}
+    </if>
+    <if test="uName != null and uName != ''">
+      AND u_tel = #{uTel}
+    </if>
+    <if test="uPwd!= null and uPwd != ''">
+      AND u_pwd = #{uPwd}
+    </if>
   </select>
 </mapper>
