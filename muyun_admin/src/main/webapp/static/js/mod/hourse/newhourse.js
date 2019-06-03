@@ -22,7 +22,7 @@ $(function () {
             layer.msg("请输入地区号");
             return;
         } else if (!ValidUtils.validUserName(hNumberArea, 1, 8)) {
-            layer.msg("用户名不超过8个字母或数字，不能出现其他特殊字符");
+            layer.msg("地区号不超过8个字母或数字，不能出现其他特殊字符");
             return;
         }
         var hAddr = $.trim($("#hAddr").val());
@@ -30,13 +30,13 @@ $(function () {
             if (!hAddr) {
                 layer.msg("请输入房子所在地址");
                 return;
-            } else if (!ValidUtils.validUserName(hAddr, 1, 25)) {
-                layer.msg("密码不超过25个字母或数字，不能出现其他特殊字符");
+            } else if (!ValidUtils.validUserName(hAddr, 1, 50)) {
+                layer.msg("地址不超过50个字母或数字，不能出现其他特殊字符");
                 return;
             }
         } else {
-            if (hAddr.length > 0 && !ValidUtils.validUserName(hAddr, 1, 25)) {
-                layer.msg("密码不超过25个字母或数字，不能出现其他特殊字符");
+            if (hAddr.length > 0 && !ValidUtils.validUserName(hAddr, 1, 50)) {
+                layer.msg("地址不超过50个个字母或数字，不能出现其他特殊字符");
                 return;
             }
         }
