@@ -3,16 +3,16 @@ $(function () {
     loadOwner();
     $("#saveBtn").click(function () {
 
-        if($("#ownerSel").val() == -1) {
+        if ($("#ownerSel").val() == -1) {
             layer.msg("请选择房子所属的房主");
             return;
         }
         var uId = $("#ownerSel").val();
         var hNumber = $.trim($("#hNumber").val());
-        if(!hNumber) {
+        if (!hNumber) {
             layer.msg("请输入房间号");
             return;
-        } else if(!ValidUtils.validText(hNumber, 1, 8)) {
+        } else if (!ValidUtils.validText(hNumber, 1, 8)) {
             layer.msg("房间号不超过8个字，不能出现其他特殊字符");
             return;
         }
@@ -26,7 +26,7 @@ $(function () {
             return;
         }
         var hAddr = $.trim($("#hAddr").val());
-        if(!$("#hAddr").val()) {
+        if (!$("#hAddr").val()) {
             if (!hAddr) {
                 layer.msg("请输入房子所在地址");
                 return;
@@ -37,44 +37,45 @@ $(function () {
         } else {
             if (hAddr.length > 0 && !ValidUtils.validText(hAddr, 1, 25)) {
                 layer.msg("地址不能超过25个字符，不能出现其他特殊字符");
-            if (hAddr.length > 0 && !ValidUtils.validUserName(hAddr, 1, 50)) {
-                layer.msg("地址不超过50个个字母或数字，不能出现其他特殊字符");
-                return;
-            }
-        }
-        var hDesc=$.trim($("#hDesc").val());
-        $.ajax({
-            url: ctx + "hourse/saveHourse",
-            type: "POST",
-            cache: false,
-            dataType: 'json',
-            data: {
-                hId:$("#hId").val(),
-                uId:uId,
-                hNumber: hNumber,
-                hNumberArea: hNumberArea,
-                hAddr:hAddr,
-                hDesc: hDesc
-            },
-            success: function (data) {
-                if (data && data.resultCode === '0') {
-                    layer.msg("保存成功");
-                    location.href = ctx + "hourse/toHourselist";
-                } else {
-                    if (data.resultDesc) {
-                        layer.msg(data.resultDesc);
-                    } else {
-                        layer.msg('保存失败 !');
-                    }
+                if (hAddr.length > 0 && !ValidUtils.validUserName(hAddr, 1, 50)) {
+                    layer.msg("地址不超过50个个字母或数字，不能出现其他特殊字符");
+                    return;
                 }
-            },
-            error: function () {
-                layer.msg('保存失败 !');
-            },
-            beforeSend: function () {
-                layer.load(1, {shade:[0.3]})
             }
-        });
+            var hDesc = $.trim($("#hDesc").val());
+            $.ajax({
+                       url: ctx + "hourse/saveHourse",
+                       type: "POST",
+                       cache: false,
+                       dataType: 'json',
+                       data: {
+                           hId: $("#hId").val(),
+                           uId: uId,
+                           hNumber: hNumber,
+                           hNumberArea: hNumberArea,
+                           hAddr: hAddr,
+                           hDesc: hDesc
+                       },
+                       success: function (data) {
+                           if (data && data.resultCode === '0') {
+                               layer.msg("保存成功");
+                               location.href = ctx + "hourse/toHourselist";
+                           } else {
+                               if (data.resultDesc) {
+                                   layer.msg(data.resultDesc);
+                               } else {
+                                   layer.msg('保存失败 !');
+                               }
+                           }
+                       },
+                       error: function () {
+                           layer.msg('保存失败 !');
+                       },
+                       beforeSend: function () {
+                           layer.load(1, {shade: [0.3]})
+                       }
+                   });
+        }
     });
 
 
