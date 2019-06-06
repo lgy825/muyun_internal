@@ -34,7 +34,7 @@ public class AppServiceImpl implements AppService {
         int count=orderMapperExt.getCountByCondition(params);
         //获取房子出租率
         DecimalFormat df = new DecimalFormat("#0.00");
-        String houseRate=(df.format(count/30));
+        String houseRate=Math.round((count*100)/30)+"";
         //获取成本费
         double extraCosts=orderMapperExt.getExtraAmountByCondition(params);
 

@@ -60,6 +60,12 @@ public class UserController extends BaseController {
     @ResponseBody
     public Result<Boolean> updatePwd(@RequestBody AppRequestParam appRequestParam) {
         Owner owner=new Owner();
+        if(appRequestParam.getOwnerId()==null){
+            return createFailedResult("用户id不能为空");
+        }
+        if(appRequestParam.getOwnerPwd()==null){
+            return createFailedResult("请输入您要修改的密码");
+        }
         owner.setuName(appRequestParam.getOwnerName());
         owner.setuPwd(appRequestParam.getOwnerPwd());
         owner.setuTel(appRequestParam.getOwnerPhone());

@@ -126,70 +126,68 @@
   <select id="getAmountByCondition" parameterType="java.util.Map" resultType="Double">
     SELECT IFNULL(sum(o.o_rec_amount),0) as yesAmount
     from muyun_order o where o.h_id in(
-    SELECT h.h_id from muyun_hourse h where 0=0
+      SELECT h.h_id from muyun_hourse h where 0=0
+      <if test="userId != null and userId != ''">
+        AND h.u_id = #{userId}
+      </if>
+      )
     <if test="beginTime!=null">
       AND  o_start_date >= #{beginTime}
     </if>
     <if test="endTime!=null">
       AND o_end_date <![CDATA[<=]]> #{endTime}
     </if>
-    <if test="userId != null and userId != ''">
-      AND h.u_id = #{userId}
-    </if>
-      )
   </select>
   
   <select id="getCountByCondition" parameterType="java.util.Map" resultType="Integer">
     SELECT count(*)  from muyun_order o where o.h_id in(
-    SELECT h.h_id from muyun_hourse h where 0=0
+      SELECT h.h_id from muyun_hourse h where 0=0
+      <if test="userId != null and userId != ''">
+        AND h.u_id = #{userId}
+      </if>
+    )
     <if test="beginTime!=null">
       AND  o_start_date >= #{beginTime}
     </if>
     <if test="endTime!=null">
       AND o_end_date <![CDATA[<=]]> #{endTime}
     </if>
-    <if test="userId != null and userId != ''">
-      AND h.u_id = #{userId}
-    </if>
-    )
   </select>
   
   <select id="getExtraAmountByCondition" resultType="Double" parameterType="java.util.Map">
     SELECT IFNULL(SUM(mi.d_amount),0)
     from muyun_order_item  mi where mi.o_id in
-    (SELECT o.o_id from muyun_order o where o.h_id in(
-    SELECT h.h_id from muyun_hourse h where 0=0
+      (SELECT o.o_id from muyun_order o where o.h_id in(
+        SELECT h.h_id from muyun_hourse h where 0=0
+          <if test="userId != null and userId != ''">
+            AND h.u_id = #{userId}
+          </if>
+      )
       <if test="beginTime!=null">
         AND  o_start_date >= #{beginTime}
       </if>
       <if test="endTime!=null">
         AND o_end_date <![CDATA[<=]]> #{endTime}
       </if>
-      <if test="userId != null and userId != ''">
-        AND h.u_id = #{userId}
-      </if>
-    ))
+    )
   </select>
 
   <select id="getOrderPageBycondition" resultMap="BaseResultMap" parameterType="java.util.Map">
-    SELECT mo.o_id as oId,sum(o_rec_amount) as incomeAll,mo.o_date as oDate
+    SELECT mo.o_id,sum(o_rec_amount) as incomeAll,o_date,DATE_FORMAT(o_date, '%Y%m%d') days
     from muyun_order mo
     where mo.h_id in
     (SELECT h.h_id from muyun_hourse h where 0=0
       <if test="userId != null and userId != ''">
         AND h.u_id = #{userId}
       </if>
-      <if test="beginTime!=null">
-        AND  o_start_date >= #{beginTime}
-      </if>
-      <if test="endTime!=null">
-        AND o_end_date <![CDATA[<=]]> #{endTime}
-      </if>
-      <if test="userId != null and userId != ''">
-        AND h.u_id = #{userId}
-      </if>
      )
-    GROUP BY mo.o_date ORDER BY mo.o_date DESC;
+    <if test="beginTime!=null">
+      AND  o_start_date >= #{beginTime}
+    </if>
+    <if test="endTime!=null">
+      AND o_end_date <![CDATA[<=]]> #{endTime}
+    </if>
+    GROUP BY days ORDER BY days DESC;
   </select>
   
 
