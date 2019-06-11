@@ -173,7 +173,7 @@
   </select>
 
   <select id="getOrderPageBycondition" resultMap="BaseResultMap" parameterType="java.util.Map">
-    SELECT mo.o_id,sum(o_rec_amount) as incomeAll,o_date,DATE_FORMAT(o_date, '%Y%m%d') days
+    SELECT mo.o_id,sum(o_rec_amount) as incomeAll,o_date,DATE_FORMAT(o_start_date, '%Y%m%d') days
     from muyun_order mo
     where mo.h_id in
     (SELECT h.h_id from muyun_hourse h where 0=0
