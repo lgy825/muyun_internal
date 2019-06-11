@@ -1,6 +1,7 @@
 package com.muyun.bapp.service;
 
 import com.muyun.core.model.order.OrderExt;
+import com.muyun.core.util.AppResponseObj;
 
 import java.util.List;
 import java.util.Map;
@@ -14,7 +15,7 @@ public interface AppService {
 
     double getIncomeByCondition(Map<String,String> params);
 
-    List<OrderExt> getOrderPage(Map<String,String> params);
+    List<AppResponseObj> getOrderPage(Map<String,String> params);
 
     OrderExt getOrderInfoById(String oId);
 }

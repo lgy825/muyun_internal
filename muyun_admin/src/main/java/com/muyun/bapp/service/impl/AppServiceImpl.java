@@ -6,10 +6,12 @@ import com.muyun.core.dao.order.OrderItemMapperExt;
 import com.muyun.core.dao.order.OrderMapperExt;
 import com.muyun.core.model.order.OrderExt;
 import com.muyun.core.model.order.OrderItem;
+import com.muyun.core.util.AppResponseObj;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -54,9 +56,13 @@ public class AppServiceImpl implements AppService {
     }
 
     @Override
-    public List<OrderExt> getOrderPage(Map<String, String> params) {
+    public List<AppResponseObj> getOrderPage(Map<String, String> params) {
 
-        List<OrderExt> orderExtList=orderMapperExt.getOrderPageBycondition(params);
+        List<AppResponseObj> orderExtList=orderMapperExt.getOrderPageBycondition(params);
+//        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+//        for(AppResponseObj obj:orderExtList){
+//            obj.setDate(sdf.(obj.getDate()));
+//        }
         return orderExtList;
     }
 

@@ -8,6 +8,7 @@ import com.muyun.core.model.order.OrderExt;
 import com.muyun.core.model.owner.Owner;
 import com.muyun.core.util.AppRequestParam;
 
+import com.muyun.core.util.AppResponseObj;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
@@ -108,7 +109,7 @@ public class UserController extends BaseController {
 
     @RequestMapping("/getOrderPageByCondition")
     @ResponseBody
-    public Result<List<OrderExt>> getOrderPageByCondition(@RequestBody AppRequestParam appRequestParam) {
+    public Result<List<AppResponseObj>> getOrderPageByCondition(@RequestBody AppRequestParam appRequestParam) {
         if (appRequestParam.getOwnerId() == null) {
             return createFailedResult("500错误，用户id为空");
         }

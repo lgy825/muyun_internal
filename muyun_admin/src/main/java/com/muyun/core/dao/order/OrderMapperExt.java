@@ -3,6 +3,7 @@ package com.muyun.core.dao.order;
 import com.muyun.core.model.order.Order;
 import com.muyun.core.model.order.OrderExample;
 import com.muyun.core.model.order.OrderExt;
+import com.muyun.core.util.AppResponseObj;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -22,5 +23,5 @@ public interface OrderMapperExt {
 
     double getExtraAmountByCondition(Map<String,String> params);
 
-    List<OrderExt> getOrderPageBycondition(Map<String,String> params);
+    List<AppResponseObj> getOrderPageBycondition(Map<String,String> params);
 }

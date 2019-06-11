@@ -172,8 +172,8 @@
     )
   </select>
 
-  <select id="getOrderPageBycondition" resultMap="BaseResultMap" parameterType="java.util.Map">
-    SELECT mo.o_id,sum(o_rec_amount) as incomeAll,o_date,DATE_FORMAT(o_start_date, '%Y%m%d') days
+  <select id="getOrderPageBycondition" resultType="com.muyun.core.util.AppResponseObj" parameterType="java.util.Map">
+    SELECT mo.o_id as oId,sum(o_rec_amount) as incomeAll,DATE_FORMAT(o_start_date, '%Y%m%d') days,o_start_date as date
     from muyun_order mo
     where mo.h_id in
     (SELECT h.h_id from muyun_hourse h where 0=0
