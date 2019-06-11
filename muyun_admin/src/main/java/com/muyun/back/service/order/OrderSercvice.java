@@ -31,4 +31,6 @@ public interface OrderSercvice {
     List<PayWay> getPayWay();
 
     Order get(String oId);
+
+    OrderItem getItem(String dId);
 }

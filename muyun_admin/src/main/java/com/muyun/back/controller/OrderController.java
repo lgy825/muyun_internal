@@ -164,6 +164,16 @@ public class OrderController extends BaseController{
         return "order/orderDetail";
     }
 
+    //查看订单详情
+    @RequestMapping("/tolookItem")
+    public String toLookItem(String id, Model model) {
+        if(StringUtils.isBlank(id)) {
+            return "order/orderItemlist";
+        }
+        model.addAttribute("dId", id);
+        return "order/lookorderItem";
+    }
+
     @RequestMapping("/getPayWayAll")
     @ResponseBody
     public Result<List<PayWay>> getPayWayAll(){
@@ -180,6 +190,12 @@ public class OrderController extends BaseController{
     @ResponseBody
     public Result<Order> get(String oId){
         return createSuccessResult(orderSercvice.get(oId));
+    }
+
+    @RequestMapping("/getItem")
+    @ResponseBody
+    public Result<OrderItem> getItem(String dId){
+        return createSuccessResult(orderSercvice.getItem(dId));
     }
 
 

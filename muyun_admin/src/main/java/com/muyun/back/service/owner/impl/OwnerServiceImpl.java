@@ -98,12 +98,15 @@ public class OwnerServiceImpl implements OwnerService {
     @Override
     public Boolean update(Owner owner) {
         owner.setuDate(new Date());
-        owner.setuPwd(MD5Util.convertMD5(owner.getuPwd()));
+        if(owner.getuPwd()!=null){
+            String temp=MD5Util.convertMD5(owner.getuPwd());
+            owner.setuPwd(MD5Util.convertMD5(temp));
+        }
         try {
             ownerMapper.updateByPrimaryKeySelective(owner);
             return true;
         } catch (Exception e) {
-            throw new DataException("用户名或密码修改失败");
+            throw new DataException("用户信息修改失败");
         }
     }
 

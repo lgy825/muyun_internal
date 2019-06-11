@@ -105,7 +105,6 @@ public class OwnerController extends BaseController {
         Owner owner=new Owner();
         owner.setId(id);
         owner.setuStatus(1);
-        owner.setuDate(new Date());
         return createSuccessResult(ownerService.update(owner));
     }
 

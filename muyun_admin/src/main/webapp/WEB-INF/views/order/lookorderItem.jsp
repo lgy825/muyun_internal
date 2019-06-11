@@ -10,7 +10,7 @@
 <div class="p20">
     <div class="bgc-ff">
         <!-- 广告投放 -->
-        <div class="b_title">录入订单项</div>
+        <div class="b_title">查看支出项</div>
         <div class="hr">
             <hr>
         </div>
@@ -44,7 +44,6 @@
                     <span class="color-lred fl ml8">* 不超过100个字</span>
                 </div>
                 <div class="pl88 mt30">
-                    <input id="saveBtn" type="button" class="blue_btn blue_btn30" value="创建完成">
                     <a href="${ctx}/order/toOrderItemlist">
                         <input type="button" class="gray_btn gray-btn30 ml20" value="返回支出列表">
                     </a>
@@ -56,5 +55,5 @@
 </body>
 
 <!-- scripts -->
-<script type="text/javascript" src="${ctx}/static/js/mod/order/addorderItem.js"></script>
+<script type="text/javascript" src="${ctx}/static/js/mod/order/lookorderItem.js"></script>
 </html>

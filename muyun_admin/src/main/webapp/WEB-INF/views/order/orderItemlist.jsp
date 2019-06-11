@@ -40,7 +40,7 @@
                 </td>
                 <td>
                     <div class="">
-                        <a href="${ctx}/order/tolook?id={{:dId}}">
+                        <a href="${ctx}/order/tolookItem?id={{:dId}}">
                             <input type="button" class="lookbtn gray_btn mr10" value="查看">
                         </a>
                         <a href="${ctx}/order/toeditItem?id={{:dId}}">

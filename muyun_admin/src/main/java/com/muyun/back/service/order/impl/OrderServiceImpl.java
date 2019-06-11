@@ -233,6 +233,11 @@ public class OrderServiceImpl implements OrderSercvice{
         return orderMapper.selectByPrimaryKey(oId);
     }
 
+    @Override
+    public OrderItem getItem(String dId) {
+        return orderItemMapper.selectByPrimaryKey(dId);
+    }
+
     public Map<Integer,String> getAllPayWayMap(){
         List<PayWay> payWays=payWayMapper.getPayWayAll();
         Map<Integer,String> stringMap=new HashMap<>();

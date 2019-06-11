@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>影院会员运营管理平台</title>
+    <title>云幕国际运营管理平台</title>
     <%@ include file="/static/commons/common.jspf" %>
     <style>
         .layui-layer {
@@ -122,7 +122,7 @@
                                 <a href="${ctx}/order/toOrderlist" target="homepage">订单管理</a>
                             </li>
                             <li class="child-menu">
-                                <a href="${ctx}/order/toOrderItemlist" target="homepage">订单附加项管理</a>
+                                <a href="${ctx}/order/toOrderItemlist" target="homepage">支出管理</a>
                             </li>
                         </ul>
                     </li>
