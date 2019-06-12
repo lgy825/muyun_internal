@@ -121,7 +121,7 @@
     <if test="uName != null and uName != ''">
       AND u_name = #{uName}
     </if>
-    <if test="uName != null and uName != ''">
+    <if test="uTel != null and uTel != ''">
       AND u_tel = #{uTel}
     </if>
     <if test="uPwd!= null and uPwd != ''">
